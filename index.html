@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>María Camila Muñoz · Diseño, Branding & Audiovisual</title>
+  <meta name="description" content="María Camila Muñoz Cano — Comunicadora Gráfica Publicitaria en Medellín. Branding, contenido para redes, video, web e impresos para marcas en Colombia y el mundo.">
+  <meta property="og:title" content="María Camila Muñoz · Diseño, Branding & Audiovisual">
+  <meta property="og:description" content="Branding, contenido digital y postproducción audiovisual con intención.">
+  <meta property="og:image" content="assets/img/maria-camila.webp">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0e0b0d">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e0b0d'/%3E%3Ccircle cx='26' cy='30' r='16' fill='%23ff2e63'/%3E%3Ccircle cx='40' cy='40' r='11' fill='%23c6ff3d'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Caveat:wght@600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span id="cursorText"></span></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <a href="#top" class="logo" aria-label="María Camila — inicio">
+      <span class="logo-mark" aria-hidden="true"><i></i><i></i></span>
+      <span class="logo-text">María Camila</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#indice" data-i18n="nav.work">Trabajo</a>
+      <a href="#servicios" data-i18n="nav.services">Servicios</a>
+      <a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a>
+      <a href="#experiencia" data-i18n="nav.exp">Experiencia</a>
+      <a href="#contacto" class="nav-cta" data-i18n="nav.cta">Hablemos</a>
+    </nav>
+    <div class="nav-right">
+      <button class="lang" id="langToggle" aria-label="Cambiar idioma / Change language">
+        <span data-lang="es">ES</span><span class="sep">/</span><span data-lang="en">EN</span>
+      </button>
+      <button class="burger" id="burger" aria-label="Menú" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero-grid-bg" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="status reveal"><span class="dot"></span><span data-i18n="hero.status">Disponible para freelance y empleo de tiempo completo</span></p>
+        <h1 class="hero-title">
+          <span class="line"><span class="split" data-i18n="hero.t1">Diseño marcas</span></span>
+          <span class="line"><span class="sel"><span class="split accent" data-i18n="hero.t2">que vibran</span><b></b><b></b><b></b><b></b></span></span>
+          <span class="line"><span class="split" data-i18n="hero.t3">y se recuerdan.</span></span>
+        </h1>
+        <p class="hero-sub reveal" data-i18n="hero.sub">Soy María Camila, Comunicadora Gráfica Publicitaria en Medellín. Creo identidades visuales, contenido para redes, video y piezas impresas para marcas que quieren verse tan bien como lo que hacen.</p>
+        <div class="hero-actions reveal">
+          <a href="#indice" class="btn btn-primary magnetic"><span data-i18n="hero.cta1">Ver mi trabajo</span> <span aria-hidden="true">↓</span></a>
+          <a href="#contacto" class="btn btn-ghost magnetic" data-i18n="hero.cta2">Cotiza tu proyecto</a>
+        </div>
+      </div>
+
+      <div class="hero-art reveal">
+        <div class="blob b1" data-speed="-0.06" aria-hidden="true"></div>
+        <div class="blob b2" data-speed="0.08" aria-hidden="true"></div>
+        <figure class="polaroid" data-speed="-0.03">
+          <span class="tape" aria-hidden="true"></span>
+          <img src="assets/img/maria-camila.webp" alt="Ilustración de María Camila Muñoz" width="1254" height="1254">
+          <figcaption class="hand" data-i18n="hero.pola">¡hola, soy Cami!</figcaption>
+        </figure>
+        <span class="sticker s-lime" data-speed="0.12" aria-hidden="true">Branding ✶</span>
+        <span class="sticker s-pink" data-speed="-0.1" aria-hidden="true">Motion ▶</span>
+        <span class="sticker s-star" data-speed="0.05" aria-hidden="true">✶</span>
+        <div class="badge" aria-hidden="true">
+          <svg viewBox="0 0 120 120"><defs><path id="circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+            <text><textPath href="#circ" id="badgeText" textLength="284" lengthAdjust="spacing">BRANDING · MOTION · CONTENIDO · DISEÑO · </textPath></text></svg>
+          <span>✦</span>
+        </div>
+        <svg class="hand-arrow" viewBox="0 0 120 80" aria-hidden="true"><path d="M8 66 C 30 20, 70 10, 106 22" /><path d="M92 10 L 107 22 L 92 34" /></svg>
+      </div>
+
+      <div class="hero-meta reveal">
+        <div><b>MED · CO</b><span class="roller" data-roll="hero.m1"></span></div>
+        <div><b>2019 →</b><span class="roller" data-roll="hero.m2"></span></div>
+        <div><b>ES · EN</b><span class="roller" data-roll="hero.m3"></span></div>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee tilt" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
+
+    <!-- ============ INDEX (folder tabs) ============ -->
+    <section class="section index" id="indice">
+      <div class="section-head">
+        <p class="eyebrow">01 — <span data-i18n="idx.eyebrow">Índice</span></p>
+        <h2 class="section-title"><span class="split" data-i18n="idx.t1">Mi trabajo,</span> <span class="hl split" data-i18n="idx.t2">por formato</span></h2>
+        <p class="section-lead reveal" data-i18n="idx.lead">Elige una categoría o baja para recorrerlas todas. Cada proyecto se abre en su contexto real: en un celular, en el navegador, en Illustrator o sobre papel.</p>
+      </div>
+      <div class="folders" id="folders"></div>
+    </section>
+
+    <!-- ============ CATEGORIES (rendered by JS) ============ -->
+    <div id="categories"></div>
+
+    <!-- ============ SERVICES ============ -->
+    <section class="section services" id="servicios">
+      <div class="section-head">
+        <p class="eyebrow">03 — <span data-i18n="svc.eyebrow">Lo que hago</span></p>
+        <h2 class="section-title"><span class="split" data-i18n="svc.t1">Servicios para</span> <span class="hl split" data-i18n="svc.t2">marcas que quieren destacar</span></h2>
+      </div>
+      <div class="svc-list" id="svcList"></div>
+      <div class="process">
+        <h3 class="sub-title" data-i18n="proc.title">Cómo trabajamos juntos</h3>
+        <ol class="proc-steps" id="procSteps"></ol>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section about" id="sobre-mi">
+      <div class="about-media">
+        <figure class="polaroid big" data-speed="-0.04">
+          <span class="tape" aria-hidden="true"></span>
+          <img src="assets/img/maria-camila.webp" alt="" loading="lazy">
+          <figcaption class="hand">María Camila ✶ MDE</figcaption>
+        </figure>
+        <ul class="about-likes" aria-label="Cosas que me gustan">
+          <li>☕ <span data-i18n="about.l1">Café</span></li>
+          <li>🐾 <span data-i18n="about.l2">Animales</span></li>
+          <li>✎ <span data-i18n="about.l3">Ilustración</span></li>
+          <li>🎭 <span data-i18n="about.l4">Teatro</span></li>
+          <li>♫ <span data-i18n="about.l5">Música</span></li>
+        </ul>
+      </div>
+      <div class="about-copy">
+        <p class="eyebrow">04 — <span data-i18n="about.eyebrow">Sobre mí</span></p>
+        <h2 class="section-title"><span class="split" data-i18n="about.t1">Estrategia en la cabeza,</span> <span class="hl split" data-i18n="about.t2">sensibilidad en las manos.</span></h2>
+        <p class="reveal" data-i18n="about.p1"></p>
+        <p class="reveal" data-i18n="about.p2"></p>
+        <p class="reveal" data-i18n="about.p3"></p>
+        <div class="skills">
+          <div><h4 data-i18n="about.sk">Habilidades</h4><ul class="chips" id="skillChips"></ul></div>
+          <div><h4 data-i18n="about.sw">Herramientas</h4><ul class="soft" id="softList"></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section" id="experiencia">
+      <div class="section-head">
+        <p class="eyebrow">05 — <span data-i18n="exp.eyebrow">Trayectoria</span></p>
+        <h2 class="section-title"><span class="split" data-i18n="exp.t1">Experiencia</span> <span class="hl split" data-i18n="exp.t2">& formación</span></h2>
+      </div>
+      <div class="exp-wrap">
+        <ol class="timeline" id="timeline"></ol>
+        <aside class="hire-card reveal">
+          <span class="sticker s-lime mini" aria-hidden="true">Open to work ✶</span>
+          <p class="eyebrow" data-i18n="hire.eyebrow">¿Reclutando?</p>
+          <h3 data-i18n="hire.title">Busco sumarme a un equipo creativo de tiempo completo.</h3>
+          <p data-i18n="hire.text">Diseño gráfico, branding, social media o postproducción. Presencial en Medellín o remoto para cualquier país.</p>
+          <a class="btn btn-primary magnetic" href="assets/docs/CV-Maria-Camila-Munoz.pdf" download><span data-i18n="hire.cv">Descargar CV</span> <span aria-hidden="true">↓</span></a>
+          <a class="btn btn-ghost magnetic" href="#contacto" data-i18n="hire.contact">Agendar entrevista</a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="contact" id="contacto">
+      <div class="marquee contact-marquee" aria-hidden="true"><div class="marquee-track" id="marquee2"></div></div>
+      <div class="contact-inner">
+        <p class="eyebrow">06 — <span data-i18n="ct.eyebrow">Contacto</span></p>
+        <h2 class="contact-title"><span class="split" data-i18n="ct.t1">¿Tienes un proyecto</span> <span class="sel"><span class="split accent" data-i18n="ct.t2">en mente?</span><b></b><b></b><b></b><b></b></span></h2>
+        <p class="section-lead reveal" data-i18n="ct.lead">Cuéntame qué necesitas y te envío una cotización personalizada en menos de 48 horas.</p>
+        <div class="contact-actions">
+          <a class="contact-card reveal" id="mailLink" href="mailto:mcamila1502@gmail.com">
+            <span class="cc-label" data-i18n="ct.mail">Escríbeme un correo</span>
+            <span class="cc-value">mcamila1502@gmail.com</span>
+            <span class="cc-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="contact-card wa reveal" id="waLink" href="https://wa.me/573105675081" target="_blank" rel="noopener">
+            <span class="cc-label">WhatsApp</span>
+            <span class="cc-value">+57 310 567 5081</span>
+            <span class="cc-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <ul class="socials">
+          <li><a href="https://www.instagram.com/camimunozcano/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.behance.net/camilamunoz1" target="_blank" rel="noopener">Behance</a></li>
+          <li><a href="https://www.linkedin.com/in/camimunozcano/" target="_blank" rel="noopener" id="linkedinLink">LinkedIn</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> María Camila Muñoz Cano</span>
+    <span data-i18n="ft.made">Diseñado con intención en Medellín, Colombia</span>
+    <a href="#top" data-i18n="ft.top">Volver arriba ↑</a>
+  </footer>
+
+  <!-- ============ VIEWER ============ -->
+  <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="vTitle" hidden>
+    <div class="v-backdrop" id="vBackdrop"></div>
+    <header class="v-top">
+      <div class="v-info">
+        <p class="eyebrow" id="vCat"></p>
+        <h2 id="vTitle"></h2>
+        <p id="vDesc"></p>
+      </div>
+      <div class="v-tools">
+        <span class="v-count" id="vCount"></span>
+        <button class="v-btn" id="vPlay" aria-label="Pausar">❚❚</button>
+        <a class="v-btn" id="vBehance" target="_blank" rel="noopener" aria-label="Behance">Bē</a>
+        <button class="v-btn v-close" id="vClose" aria-label="Cerrar">✕</button>
+      </div>
+    </header>
+    <div class="v-stage" id="vStage"></div>
+    <button class="v-arrow prev" id="vPrev" aria-label="Anterior">←</button>
+    <button class="v-arrow next" id="vNext" aria-label="Siguiente">→</button>
+    <div class="v-thumbs" id="vThumbs"></div>
+    <div class="v-progress"><i id="vProgress"></i></div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
