@@ -767,3 +767,17 @@ html, body { overflow-x: clip; }
   .soc-nav { margin-left: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .soc-hint, .soc-bar .soc-tab, .soc-next { animation: none !important; } }
+
+/* Celular: pestañas en cuadrícula de 2 columnas para que los nombres se lean completos */
+@media (max-width: 760px) {
+  .soc-bar .soc-tabs {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px;
+    overflow: visible; width: 100%; padding: 0; -webkit-mask-image: none; mask-image: none;
+  }
+  .soc-bar .soc-tab { width: 100%; min-width: 0; gap: 8px; padding: 5px 10px 5px 5px; font-size: .82rem; line-height: 1.15; white-space: normal; text-align: left; border-radius: 16px; }
+  .soc-bar .soc-tab img { width: 30px; height: 30px; }
+  .soc-bar .soc-tab span { min-width: 0; overflow-wrap: anywhere; }
+  .soc-bar .soc-tab:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .soc-nav { width: 100%; justify-content: space-between; }
+  .soc-next { width: 40px; height: 40px; font-size: 1.1rem; }
+}
