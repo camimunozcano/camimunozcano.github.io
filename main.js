@@ -36,7 +36,7 @@ const CATEGORIES = [
     es: { name: "Carruseles", desc: "Carruseles que cuentan una historia en cada deslizada: ritmo, continuidad visual y un cierre que invita a actuar.", note: "desliza →" },
     en: { name: "Carousels", desc: "Carousels that tell a story with every swipe: rhythm, visual continuity and a closing slide that drives action.", note: "swipe →" },
     projects: [
-      { id: "glimmer-carrusel", client: "vivantactive", year: "2026", behance: BE + "257386965", images: L("glimmer-carrusel", 4),
+      { id: "glimmer-carrusel", client: "glimmer.collection", year: "2026", behance: BE + "257386965", images: L("glimmer-carrusel", 4),
         es: { title: "Glimmer · Carrusel", desc: "Carrusel de lanzamiento para una colección de ropa deportiva: “your kind of glow”." },
         en: { title: "Glimmer · Carousel", desc: "Launch carousel for an activewear collection: “your kind of glow”." } },
       { id: "fidelina-carrusel", client: "fidelina", year: "2025", ratio: "r45", behance: BE + "225199239", images: L("fidelina-carrusel", 4),
@@ -91,14 +91,10 @@ const CATEGORIES = [
     es: { name: "Videos y reels", desc: "Edición, ritmo y motion graphics para reels y pautas que detienen el scroll.", note: "dale play ▶" },
     en: { name: "Videos & reels", desc: "Editing, pacing and motion graphics for reels and ads that stop the scroll.", note: "hit play ▶" },
     projects: [
-      { id: "glimmer-reel", client: "vivantactive", year: "2026", behance: BE + "257386965",
+      { id: "glimmer-reel", client: "glimmer.collection", year: "2026", behance: BE + "257386965",
         video: "assets/video/glimmer-reel.mp4", images: L("glimmer-carrusel", 1),
         es: { title: "Glimmer · Reel", desc: "Reel de lanzamiento con motion y tipografía animada." },
         en: { title: "Glimmer · Reel", desc: "Launch reel with motion and animated type." } },
-      { id: "glimmer-pauta", client: "vivantactive", year: "2026", behance: BE + "257386965",
-        video: "assets/video/glimmer-pauta.mp4", images: L("glimmer-carrusel", 4).slice(3),
-        es: { title: "Glimmer · Pauta 20% OFF", desc: "Video publicitario para pauta pagada con oferta y llamado a la acción." },
-        en: { title: "Glimmer · 20% OFF ad", desc: "Paid social video ad with an offer and a call to action." } },
       { id: "casa-reel", client: "lacasadellado", year: "2025", behance: BE + "225199805",
         video: "https://www-ccv.adobe.io/v1/player/ccv/THPeaGmEN46/embed?api_key=behance1&bgcolor=%23000000",
         images: L("casa-stories", 1),
@@ -116,10 +112,10 @@ const CATEGORIES = [
     es: { name: "Web y email", desc: "Banners web y email marketing que convierten: jerarquía clara, producto protagonista y llamados a la acción.", note: "clic aquí ↓" },
     en: { name: "Web & email", desc: "Web banners and email marketing that convert: clear hierarchy, hero product and strong calls to action.", note: "click here ↓" },
     projects: [
-      { id: "glimmer-web", frame: "browser", client: "vivantactive.com", year: "2026", behance: BE + "257386965", images: L("glimmer-web", 1),
+      { id: "glimmer-web", frame: "browser", client: "glimmer.co", year: "2026", behance: BE + "257386965", images: L("glimmer-web", 1),
         es: { title: "Glimmer · Banner web", desc: "Banner principal para el sitio web de la colección Glimmer." },
         en: { title: "Glimmer · Web banner", desc: "Hero banner for the Glimmer collection website." } },
-      { id: "glimmer-mail", frame: "mail", client: "Vivant Active", year: "2026", behance: BE + "257386965", images: L("glimmer-mail", 1),
+      { id: "glimmer-mail", frame: "mail", client: "Glimmer", year: "2026", behance: BE + "257386965", images: L("glimmer-mail", 1),
         es: { title: "Glimmer · Email marketing", desc: "Email de lanzamiento con producto, beneficios y llamado a la acción.", subject: "✨ Tu nuevo glow ya está aquí" },
         en: { title: "Glimmer · Email marketing", desc: "Launch email with product, benefits and a call to action.", subject: "✨ Your new glow is here" } }
     ]
@@ -172,7 +168,7 @@ const SERVICES = [
 ];
 /* ---------- PAQUETES DE BRANDING (precios: COP y USD a TRM 3.350, redondeados) ---------- */
 const PACKAGES = [
-  { id: "esencial", cop: "850.000", usd: "250", rev: 2,
+  { id: "esencial", cop: "1.000.000", usd: "300", rev: 2,
     es: { name: "Esencial", tag: "Arranca tu marca", for: "Para emprendimientos que necesitan una imagen profesional rápido.", time: "7–10 días hábiles", base: "",
       items: ["Brief y llamada inicial", "2 propuestas de logo", "Logo principal + versión en una tinta", "Paleta de color (HEX, RGB, CMYK)", "2 tipografías recomendadas", "Tarjeta de presentación", "Mini guía de uso del logo", "Archivos PNG, JPG, PDF y SVG"] },
     en: { name: "Essential", tag: "Launch your brand", for: "For new businesses that need a professional look, fast.", time: "7–10 business days", base: "",
@@ -182,7 +178,7 @@ const PACKAGES = [
       items: ["Moodboard de dirección visual", "3 propuestas de logo", "Sistema de logo: horizontal, vertical, isotipo", "Patrón y elementos gráficos", "Papelería: tarjeta, hoja membrete y firma de correo", "Kit de redes: 3 plantillas + íconos de destacadas", "Guía de marca básica", "Archivos editables (AI)"] },
     en: { name: "Professional", tag: "A brand with presence", for: "For businesses already selling that need to look consistent everywhere.", time: "2–3 weeks", base: "Everything in Essential, plus:",
       items: ["Visual direction moodboard", "3 logo concepts", "Logo system: horizontal, vertical, symbol", "Pattern and graphic elements", "Stationery: business card, letterhead and email signature", "Social kit: 3 templates + highlight icons", "Basic brand guide", "Editable source files (AI)"] } },
-  { id: "integral", cop: "2.900.000", usd: "870", rev: 4, featured: true,
+  { id: "integral", cop: "3.350.000", usd: "1,000", rev: 4, featured: true,
     es: { name: "Integral", tag: "Marca completa", for: "Para marcas que quieren una identidad sólida, con estrategia y un manual que cualquiera pueda seguir.", time: "4–5 semanas", base: "Todo lo del Profesional, más:", badge: "★ el más completo",
       items: ["Estrategia: benchmarking de 3–5 competidores, público, personalidad y tono", "Sistema de logo completo + favicon", "Set de 6 íconos de marca", "Papelería completa: sobre, carpeta y plantilla de cotización", "Kit de redes ampliado: 6 plantillas", "3 mockups de aplicación", "Animación del logo (5 s)", "Manual de marca completo", "30 días de acompañamiento"] },
     en: { name: "Complete", tag: "The full brand", for: "For brands that want a solid identity, with strategy and guidelines anyone can follow.", time: "4–5 weeks", base: "Everything in Professional, plus:", badge: "★ the full package",
@@ -191,11 +187,11 @@ const PACKAGES = [
 const EXTRAS = [
   ["Ronda de revisión adicional", "Extra revision round", "$120.000", "$35"],
   ["Propuesta de logo adicional", "Extra logo concept", "$250.000", "$75"],
-  ["Animación de logo (Esencial o Profesional)", "Logo animation (Essential or Professional)", "$350.000", "$105"],
+  ["Animación de logo (Esencial o Profesional)", "Logo animation (Essential or Professional)", "$400.000", "$120"],
   ["Plantilla de redes adicional", "Extra social template", "$60.000", "$20"],
   ["Pieza de papelería adicional", "Extra stationery piece", "$90.000", "$25"],
   ["Diseño de etiqueta o empaque", "Label or packaging design", "$400.000+", "$120+"],
-  ["Pasar de la guía básica al manual completo", "Upgrade basic guide to full guidelines", "$900.000", "$270"],
+  ["Pasar de la guía básica al manual completo", "Upgrade basic guide to full guidelines", "$1.100.000", "$330"],
   ["Entrega urgente (mitad del tiempo)", "Rush delivery (half the time)", "+30%", "+30%"]
 ];
 const CONDITIONS = {
@@ -286,9 +282,10 @@ const I18N = {
     "about.sw": "Herramientas",
     "about.sk": "Habilidades", "about.l1": "Café", "about.l2": "Animales", "about.l3": "Ilustración", "about.l4": "Teatro", "about.l5": "Música",
     "exp.eyebrow": "Trayectoria", "exp.t1": "Experiencia", "exp.t2": "& formación",
-    "hire.eyebrow": "¿Reclutando?", "hire.title": "Busco sumarme a un equipo creativo de tiempo completo.",
-    "hire.text": "Diseño gráfico, branding, social media o postproducción. Presencial en Medellín o remoto para cualquier país.",
-    "hire.cv": "Descargar CV", "hire.contact": "Agendar entrevista",
+    "hire.eyebrow": "Para equipos y agencias", "hire.title": "Estrategia, diseño y video en una sola persona para tu equipo.",
+    "hire.text": "Llego con dirección de arte, branding, contenido para redes y postproducción, y con la costumbre de medir lo que funciona. Disponible para roles de tiempo completo, en Medellín o en remoto.",
+    "hire.cv": "Ver mi CV", "hire.contact": "Hablemos de tu equipo",
+    "pkg.hint": "¿lista para empezar? mira los paquetes →", "pkg.btn": "Ver paquetes de branding",
     "ct.eyebrow": "Contacto", "ct.t1": "¿Tienes un proyecto", "ct.t2": "en mente?",
     "ct.lead": "Cuéntame qué necesitas y te envío una cotización personalizada en menos de 48 horas.", "ct.mail": "Escríbeme un correo",
     "ft.made": "Diseñado con intención en Medellín, Colombia", "ft.top": "Volver arriba ↑",
@@ -322,9 +319,10 @@ const I18N = {
     "about.sw": "Tools",
     "about.sk": "Skills", "about.l1": "Coffee", "about.l2": "Animals", "about.l3": "Illustration", "about.l4": "Theatre", "about.l5": "Music",
     "exp.eyebrow": "Background", "exp.t1": "Experience", "exp.t2": "& education",
-    "hire.eyebrow": "Hiring?", "hire.title": "I'm looking to join a creative team full-time.",
-    "hire.text": "Graphic design, branding, social media or video post-production. On-site in Medellín or remote, anywhere in the world.",
-    "hire.cv": "Download résumé", "hire.contact": "Book an interview",
+    "hire.eyebrow": "For teams & agencies", "hire.title": "Strategy, design and video, all in one hire for your team.",
+    "hire.text": "I bring art direction, branding, social content and post-production, plus the habit of measuring what works. Available for full-time roles, in Medellín or remote.",
+    "hire.cv": "See my résumé", "hire.contact": "Let's talk about your team",
+    "pkg.hint": "ready to start? see the packages →", "pkg.btn": "See branding packages",
     "ct.eyebrow": "Contact", "ct.t1": "Got a project", "ct.t2": "in mind?",
     "ct.lead": "Tell me what you need and I'll send you a tailored quote within 48 hours.", "ct.mail": "Send me an email",
     "ft.made": "Designed with intention in Medellín, Colombia", "ft.top": "Back to top ↑",
@@ -422,7 +420,7 @@ const cardTpl = {
     <button class="pcard reveal" data-open="${p.id}" data-cursor="${t("cat.view")}">
       <div class="browser">
         <div class="br-bar"><span class="br-dots"><i></i><i></i><i></i></span><span class="br-url">https://${esc(p.client)}</span></div>
-        <div class="br-nav"><b>VIVANT</b><span><em>Shop</em><em>New</em><em>About</em><em>♡</em></span></div>
+        <div class="br-nav"><b>GLIMMER</b><span><em>Shop</em><em>New</em><em>About</em><em>♡</em></span></div>
         <div class="br-view"><img src="${p.images[0]}" alt="" loading="lazy"></div>
       </div>
       <div class="pcard-cap"><h3>${esc(p[lang].title)}</h3><p>${esc(p[lang].desc)}</p></div>
@@ -431,7 +429,7 @@ const cardTpl = {
   mail: (p) => `
     <button class="pcard reveal" data-open="${p.id}" data-cursor="${t("cat.open")}">
       <div class="mail">
-        <div class="mail-head"><div class="subj">${esc(p[lang].subject)}</div><div class="from"><i>V</i>${esc(p.client)} </div></div>
+        <div class="mail-head"><div class="subj">${esc(p[lang].subject)}</div><div class="from"><i>G</i>${esc(p.client)} </div></div>
         <div class="mail-body"><img src="${p.images[0]}" alt="" loading="lazy"></div>
       </div>
       <div class="pcard-cap"><h3>${esc(p[lang].title)}</h3><p>${esc(p[lang].desc)}</p></div>
@@ -444,6 +442,23 @@ const cardTpl = {
     </button>`
 };
 
+// Las categorías de redes (carruseles, posts, historias, reels) se muestran juntas en una sola sección con pestañas.
+const SOCIAL_IDS = ["carousels", "posts", "stories", "videos"];
+const SOCIAL = {
+  es: { name: "Redes sociales", desc: "Carruseles, posts, historias y reels con una línea gráfica clara para cada marca. Elige un formato y toca cualquier celular para verlo completo.", note: "elige un formato ✶" },
+  en: { name: "Social media", desc: "Carousels, posts, stories and reels with a clear visual system for each brand. Pick a format and tap any phone to see it in full.", note: "pick a format ✶" }
+};
+function renderList() {
+  const list = [];
+  CATEGORIES.forEach(c => {
+    if (!SOCIAL_IDS.includes(c.id)) return list.push(c);
+    let s = list.find(x => x.id === "social");
+    if (!s) { s = { id: "social", type: "social", es: SOCIAL.es, en: SOCIAL.en, groups: [], projects: [] }; list.push(s); }
+    s.groups.push(c); s.projects = s.projects.concat(c.projects);
+  });
+  return list;
+}
+
 function renderCategory(c, i) {
   const d = c[lang];
   const n = c.projects.length;
@@ -451,6 +466,16 @@ function renderCategory(c, i) {
   if (c.type === "ai") body = `<div class="ai-grid">${c.projects.map(cardTpl.ai).join("")}</div>`;
   if (c.type === "feed" || c.type === "story" || c.type === "reel")
     body = `<div class="h-scroll"><div class="phones">${c.projects.map(cardTpl[c.type]).join("")}</div></div>`;
+  if (c.type === "social") body = `
+    <div class="soc-tabs" role="tablist">${c.groups.map((g, k) => `
+      <button class="soc-tab${k ? "" : " on"}" role="tab" aria-selected="${!k}" data-tab="${g.id}">${esc(g[lang].name)} <small>${g.projects.length}</small></button>`).join("")}
+      <span class="soc-ink" aria-hidden="true"></span>
+    </div>
+    ${c.groups.map((g, k) => `
+    <div class="soc-panel${k ? "" : " on"}" role="tabpanel" data-panel="${g.id}"${k ? " hidden" : ""}>
+      <p class="soc-desc">${esc(g[lang].desc)}</p>
+      <div class="h-scroll"><div class="phones">${g.projects.map(cardTpl[g.type]).join("")}</div></div>
+    </div>`).join("")}`;
   if (c.type === "web") body = `<div class="web-grid">${c.projects.map(p => cardTpl[p.frame](p)).join("")}</div>`;
   if (c.type === "print") body = `<div class="paper-grid">${c.projects.map(cardTpl.print).join("")}</div>`;
   if (c.type === "photo") {
@@ -466,7 +491,7 @@ function renderCategory(c, i) {
       <span class="cat-note">${esc(d.note)}</span>
       <header class="cat-head">
         <span class="cat-num">${pad(i + 1)}</span>
-        <p class="eyebrow" style="margin:0">02 — ${t("cat.eyebrow")} · ${n} ${n === 1 ? t("cat.count1") : t("cat.countN")}</p>
+        <p class="eyebrow" style="margin:0">${t("cat.eyebrow")} · ${n} ${n === 1 ? t("cat.count1") : t("cat.countN")}</p>
         <h2 class="cat-title"><span class="sel"><span class="split">${esc(d.name)}</span><b></b><b></b><b></b><b></b></span></h2>
         <p class="cat-desc reveal" style="grid-column:1/-1">${esc(d.desc)}</p>
       </header>
@@ -497,12 +522,7 @@ function render() {
   $("#marquee").innerHTML = mq(MARQUEE[lang]); $("#marquee").dataset.speed = 34;
   $("#marquee2").innerHTML = mq(MARQUEE2[lang]); $("#marquee2").dataset.speed = -30;
 
-  $("#folders").innerHTML = CATEGORIES.map((c, i) => `
-    <a class="folder reveal" href="#cat-${c.id}" style="transition-delay:${i * 60}ms">
-      <span class="num">${pad(i + 1)}</span>
-      <span><strong>${esc(c[lang].name)}</strong><br><small>${c.projects.length} ${c.projects.length === 1 ? t("cat.count1") : t("cat.countN")}</small></span>
-    </a>`).join("");
-  $("#categories").innerHTML = CATEGORIES.map(renderCategory).join("");
+  $("#categories").innerHTML = renderList().map(renderCategory).join("");
 
   $("#svcList").innerHTML = SERVICES.map((s, i) => `
     <article class="svc reveal${s.star ? " star" : ""}">
@@ -553,6 +573,7 @@ function render() {
   setupPreviews();
   setupMarquees();
   observe();
+  requestAnimationFrame(() => $$(".soc-tabs").forEach(placeInk));
 }
 
 /* =========================================================
@@ -705,14 +726,14 @@ const frameTpl = {
   browser: (p) => `
     <div class="vf browser">
       <div class="br-bar"><span class="br-dots"><i></i><i></i><i></i></span><span class="br-url">https://${esc(p.client)}</span></div>
-      <div class="br-nav"><b>VIVANT</b><span><em>Shop</em><em>New</em><em>About</em><em>♡</em></span></div>
+      <div class="br-nav"><b>GLIMMER</b><span><em>Shop</em><em>New</em><em>About</em><em>♡</em></span></div>
       <div class="br-view"><div class="v-slides"></div></div>
     </div>`,
   mail: (p) => `
     <div class="vf mail">
       <aside class="mail-side"><b>${t("v.mailbox")}</b><span class="on">${t("v.inbox")} · 1</span><span>${t("v.promo")}</span><span>${t("v.sent")}</span></aside>
       <div class="mail-main">
-        <div class="mail-head"><div class="subj">${esc(p[lang].subject)}</div><div class="from"><i>V</i>${esc(p.client)} </div></div>
+        <div class="mail-head"><div class="subj">${esc(p[lang].subject)}</div><div class="from"><i>G</i>${esc(p.client)} </div></div>
         <div class="mail-body"><img src="${p.images[0]}" alt="${esc(p[lang].title)}"></div>
       </div>
     </div>`,
@@ -819,6 +840,45 @@ document.addEventListener("click", e => {
 /* =========================================================
    NAV
    ========================================================= */
+// Pestañas de Redes sociales (delegado: sobrevive al re-render por idioma)
+function placeInk(tabs) {
+  const on = tabs.querySelector(".soc-tab.on"), ink = tabs.querySelector(".soc-ink");
+  if (on && ink) { ink.style.width = on.offsetWidth + "px"; ink.style.transform = `translateX(${on.offsetLeft}px)`; }
+}
+document.addEventListener("click", e => {
+  const tab = e.target.closest(".soc-tab"); if (!tab) return;
+  const sec = tab.closest(".cat"), tabs = tab.parentElement;
+  tabs.querySelectorAll(".soc-tab").forEach(b => { const on = b === tab; b.classList.toggle("on", on); b.setAttribute("aria-selected", on); });
+  sec.querySelectorAll(".soc-panel").forEach(p => {
+    const on = p.dataset.panel === tab.dataset.tab;
+    p.hidden = !on; p.classList.toggle("on", on);
+    if (on) { p.classList.remove("enter"); void p.offsetWidth; p.classList.add("enter"); p.querySelector(".h-scroll").scrollLeft = 0; }
+  });
+  placeInk(tabs);
+});
+addEventListener("resize", () => $$(".soc-tabs").forEach(placeInk));
+
+// Ventana de paquetes
+const pkgOv = $("#paquetes");
+let pkgLastFocus = null;
+function openPkg() {
+  pkgLastFocus = document.activeElement;
+  pkgOv.hidden = false; document.body.style.overflow = "hidden";
+  pkgOv.scrollTop = 0; pkgOv.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
+  if (location.hash !== "#paquetes") history.replaceState(null, "", "#paquetes");
+  pkgOv.querySelector(".pkg-close").focus();
+}
+function closePkg() {
+  pkgOv.hidden = true; document.body.style.overflow = "";
+  if (location.hash === "#paquetes") history.replaceState(null, "", location.pathname + location.search);
+  if (pkgLastFocus) pkgLastFocus.focus({ preventScroll: true });
+}
+document.addEventListener("click", e => {
+  if (e.target.closest("[data-pkg-open]")) { e.preventDefault(); setMenu(false); openPkg(); }
+  else if (e.target.closest("[data-pkg-close]") || e.target === pkgOv) closePkg();
+});
+addEventListener("keydown", e => { if (e.key === "Escape" && !pkgOv.hidden) closePkg(); });
+
 const nav = $("#nav"), burger = $("#burger"), links = $("#navLinks");
 addEventListener("scroll", () => nav.classList.toggle("scrolled", scrollY > 30), { passive: true });
 function setMenu(open) {
@@ -837,3 +897,4 @@ $("#year").textContent = new Date().getFullYear();
 lang = getInitialLang();
 render();
 requestAnimationFrame(() => $$(".hero .reveal, .hero .split").forEach(el => el.classList.add("in")));
+if (location.hash === "#paquetes") openPkg();

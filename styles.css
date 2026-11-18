@@ -321,6 +321,26 @@ html[lang="es"] .lang [data-lang="es"], html[lang="en"] .lang [data-lang="en"] {
 .reel-cap { font-size: .74rem; }
 .reel-cap b { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
 
+/* Historias y reels: el área de imagen es 9:16 exacto, así la pieza se ve completa (sin recorte) */
+.story .slides, .reel .slides,
+.vf.story .scr > .v-slides, .vf.reel .scr > .v-slides { inset: auto 0; top: 50%; translate: 0 -50%; width: 100%; height: auto; aspect-ratio: 9 / 16; }
+.vf.story .v-slides > img { object-fit: contain; }
+
+/* ---------- Redes sociales: pestañas ---------- */
+.soc-tabs { position: relative; display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 5px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); margin-bottom: 18px; }
+.soc-tab { position: relative; z-index: 1; padding: .6em 1.2em; border-radius: 999px; font-weight: 700; font-size: .92rem; color: var(--muted); transition: color .35s; white-space: nowrap; }
+.soc-tab small { font-size: .72rem; opacity: .7; margin-left: 2px; }
+.soc-tab.on { color: var(--bg); }
+.soc-tab:not(.on):hover { color: var(--text); }
+.soc-ink { position: absolute; z-index: 0; left: 0; top: 5px; bottom: 5px; width: 0; border-radius: 999px; background: var(--lime); transition: transform .55s var(--ease), width .55s var(--ease); }
+.soc-desc { color: var(--muted); margin: 0 0 6px; max-width: 46em; font-size: .95rem; }
+.soc-panel.enter .pcard { animation: phoneIn .8s var(--ease) both; }
+.soc-panel.enter .pcard:nth-child(2) { animation-delay: .08s; }
+.soc-panel.enter .pcard:nth-child(3) { animation-delay: .16s; }
+.soc-panel.enter .pcard:nth-child(4) { animation-delay: .24s; }
+@keyframes phoneIn { from { opacity: 0; transform: translateY(40px) rotate(3deg); } }
+@media (max-width: 760px) { .soc-tabs { display: flex; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; max-width: 100%; } .soc-tab { padding: .55em 1em; font-size: .85rem; } }
+
 .h-scroll { overflow-x: auto; scroll-snap-type: x mandatory; padding: 40px 6px 30px; margin: -40px -6px 0; scrollbar-width: none; }
 .h-scroll::-webkit-scrollbar { display: none; }
 .h-scroll .phones { width: max-content; min-width: 100%; }
@@ -363,7 +383,8 @@ html[lang="es"] .lang [data-lang="es"], html[lang="en"] .lang [data-lang="en"] {
 .paper-grid .pcard:nth-child(2) .pcard-cap, .paper-grid .pcard:nth-child(4) .pcard-cap { margin-top: 46px; }
 
 /* --- Photo film strip --- */
-.film { background: #000; padding: 22px 0; position: relative; rotate: 1.2deg; margin: 0 -20px; }
+.film { background: #000; padding: 22px 0; position: relative; rotate: 1.2deg; margin: 0 -20px; overflow: hidden; }
+html, body { overflow-x: clip; }
 .film::before, .film::after { content: ""; position: absolute; left: 0; right: 0; height: 12px; background-image: radial-gradient(circle, #2a2a2a 0 3.2px, transparent 3.6px); background-size: 22px 12px; }
 .film::before { top: 4px; } .film::after { bottom: 4px; }
 .film .marquee-track { gap: 14px; padding-left: 14px; }
@@ -385,8 +406,21 @@ html[lang="es"] .lang [data-lang="es"], html[lang="en"] .lang [data-lang="en"] {
 .svc .tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
 .svc .tags li { font-size: .78rem; padding: .3em .9em; border: 1px solid var(--line); border-radius: 999px; }
 .svc.star h3::after { content: "★ top"; font-family: var(--f-hand); color: var(--bg); background: var(--lime); font-size: .5em; padding: .05em .5em; border-radius: 999px; vertical-align: middle; margin-left: .5em; letter-spacing: 0; }
+/* ---------- Botón a paquetes (en "Cómo trabajamos juntos") ---------- */
+.pkg-open-wrap { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 14px 22px; margin-top: 36px; }
+.pkg-open-note { margin: 0; color: var(--lime); font-size: 1.6rem; rotate: -3deg; }
+
+/* ---------- Ventana de paquetes ---------- */
+.pkg-overlay {
+  position: fixed; inset: 0; z-index: 140; overflow-y: auto; overscroll-behavior: contain;
+  background: rgba(8, 6, 8, .86); backdrop-filter: blur(16px) saturate(.8); -webkit-backdrop-filter: blur(16px) saturate(.8);
+  animation: fadeIn .45s ease;
+}
+.pkg-overlay[hidden] { display: none; }
+.pkg-sheet { max-width: 1180px; margin: 0 auto; padding: clamp(70px, 8vw, 100px) var(--gutter) 60px; animation: popIn .7s var(--ease) both; }
+.pkg-close { position: fixed; z-index: 2; top: 18px; right: var(--gutter); }
+
 /* ---------- Paquetes de branding ---------- */
-.packages { margin-top: clamp(64px, 8vw, 100px); }
 .pkg-head { max-width: 760px; margin-bottom: 36px; }
 .pkg-head .sub-title { font-size: clamp(1.6rem, 3vw, 2.4rem); margin: 0; }
 .pkg-note { color: var(--lime); font-size: .8em; margin-left: .3em; display: inline-block; rotate: -4deg; }

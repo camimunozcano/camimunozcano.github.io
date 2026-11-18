@@ -27,11 +27,11 @@
       <span class="logo-text">María Camila</span>
     </a>
     <nav class="nav-links" id="navLinks">
-      <a href="#indice" data-i18n="nav.work">Trabajo</a>
-      <a href="#servicios" data-i18n="nav.services">Servicios</a>
-      <a href="#paquetes" data-i18n="nav.pkg">Paquetes</a>
       <a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a>
+      <a href="#servicios" data-i18n="nav.services">Servicios</a>
+      <a href="#trabajo" data-i18n="nav.work">Trabajo</a>
       <a href="#experiencia" data-i18n="nav.exp">Experiencia</a>
+      <a href="#paquetes" data-pkg-open data-i18n="nav.pkg">Paquetes</a>
       <a href="#contacto" class="nav-cta" data-i18n="nav.cta">Hablemos</a>
     </nav>
     <div class="nav-right">
@@ -55,7 +55,7 @@
         </h1>
         <p class="hero-sub reveal" data-i18n="hero.sub">Soy María Camila, Comunicadora Gráfica Publicitaria en Medellín. Creo identidades visuales, contenido para redes, video y piezas impresas para marcas que quieren verse tan bien como lo que hacen.</p>
         <div class="hero-actions reveal">
-          <a href="#indice" class="btn btn-primary magnetic"><span data-i18n="hero.cta1">Ver mi trabajo</span> <span aria-hidden="true">↓</span></a>
+          <a href="#trabajo" class="btn btn-primary magnetic"><span data-i18n="hero.cta1">Ver mi trabajo</span> <span aria-hidden="true">↓</span></a>
           <a href="#contacto" class="btn btn-ghost magnetic" data-i18n="hero.cta2">Cotiza tu proyecto</a>
         </div>
       </div>
@@ -89,52 +89,6 @@
     <!-- ============ MARQUEE ============ -->
     <div class="marquee tilt" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
 
-    <!-- ============ INDEX (folder tabs) ============ -->
-    <section class="section index" id="indice">
-      <div class="section-head">
-        <p class="eyebrow">01 — <span data-i18n="idx.eyebrow">Índice</span></p>
-        <h2 class="section-title"><span class="split" data-i18n="idx.t1">Mi trabajo,</span> <span class="hl split" data-i18n="idx.t2">por formato</span></h2>
-        <p class="section-lead reveal" data-i18n="idx.lead">Elige una categoría o baja para recorrerlas todas. Cada proyecto se abre en su contexto real: en un celular, en el navegador, en Illustrator o sobre papel.</p>
-      </div>
-      <div class="folders" id="folders"></div>
-    </section>
-
-    <!-- ============ CATEGORIES (rendered by JS) ============ -->
-    <div id="categories"></div>
-
-    <!-- ============ SERVICES ============ -->
-    <section class="section services" id="servicios">
-      <div class="section-head">
-        <p class="eyebrow">03 — <span data-i18n="svc.eyebrow">Lo que hago</span></p>
-        <h2 class="section-title"><span class="split" data-i18n="svc.t1">Servicios para</span> <span class="hl split" data-i18n="svc.t2">marcas que quieren destacar</span></h2>
-      </div>
-      <div class="svc-list" id="svcList"></div>
-
-      <!-- Paquetes de branding -->
-      <div class="packages" id="paquetes">
-        <div class="pkg-head">
-          <h3 class="sub-title"><span data-i18n="pkg.title">Paquetes de branding</span> <span class="hand pkg-note" data-i18n="pkg.note">elige el tuyo ✶</span></h3>
-          <p class="section-lead reveal" data-i18n="pkg.lead"></p>
-        </div>
-        <div class="pkg-grid" id="pkgGrid"></div>
-        <div class="pkg-more">
-          <details class="pkg-details reveal">
-            <summary data-i18n="pkg.extrasTitle">Extras para cualquier paquete</summary>
-            <table class="pkg-extras" id="pkgExtras"></table>
-          </details>
-          <details class="pkg-details reveal">
-            <summary data-i18n="pkg.condTitle">Condiciones</summary>
-            <ol class="pkg-cond" id="pkgCond"></ol>
-          </details>
-        </div>
-      </div>
-
-      <div class="process">
-        <h3 class="sub-title" data-i18n="proc.title">Cómo trabajamos juntos</h3>
-        <ol class="proc-steps" id="procSteps"></ol>
-      </div>
-    </section>
-
     <!-- ============ ABOUT ============ -->
     <section class="section about" id="sobre-mi">
       <div class="about-media">
@@ -152,7 +106,7 @@
         </ul>
       </div>
       <div class="about-copy">
-        <p class="eyebrow">04 — <span data-i18n="about.eyebrow">Sobre mí</span></p>
+        <p class="eyebrow">01 — <span data-i18n="about.eyebrow">Sobre mí</span></p>
         <h2 class="section-title"><span class="split" data-i18n="about.t1">Estrategia en la cabeza,</span> <span class="hl split" data-i18n="about.t2">sensibilidad en las manos.</span></h2>
         <p class="reveal" data-i18n="about.p1"></p>
         <p class="reveal" data-i18n="about.p2"></p>
@@ -164,16 +118,59 @@
       </div>
     </section>
 
+    <!-- ============ SERVICES ============ -->
+    <section class="section services" id="servicios">
+      <div class="section-head">
+        <p class="eyebrow">02 — <span data-i18n="svc.eyebrow">Lo que hago</span></p>
+        <h2 class="section-title"><span class="split" data-i18n="svc.t1">Servicios para</span> <span class="hl split" data-i18n="svc.t2">marcas que quieren destacar</span></h2>
+      </div>
+      <div class="svc-list" id="svcList"></div>
+
+      <div class="process">
+        <h3 class="sub-title" data-i18n="proc.title">Cómo trabajamos juntos</h3>
+        <ol class="proc-steps" id="procSteps"></ol>
+        <div class="pkg-open-wrap reveal">
+          <p class="hand pkg-open-note" data-i18n="pkg.hint">¿lista la idea? mira los paquetes →</p>
+          <button class="btn btn-primary magnetic" data-pkg-open><span data-i18n="pkg.btn">Ver paquetes de branding</span> <span aria-hidden="true">✶</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORK (categories rendered by JS) ============ -->
+    <div id="trabajo"><div id="categories"></div></div>
+
+    <!-- ============ PAQUETES (ventana aparte, se abre con [data-pkg-open] o #paquetes) ============ -->
+    <div class="pkg-overlay" id="paquetes" role="dialog" aria-modal="true" aria-labelledby="pkgTitle" hidden>
+      <button class="v-btn v-close pkg-close" data-pkg-close aria-label="Cerrar">✕</button>
+      <div class="packages pkg-sheet">
+        <div class="pkg-head">
+          <h3 class="sub-title" id="pkgTitle"><span data-i18n="pkg.title">Paquetes de branding</span> <span class="hand pkg-note" data-i18n="pkg.note">elige el tuyo ✶</span></h3>
+          <p class="section-lead reveal" data-i18n="pkg.lead"></p>
+        </div>
+        <div class="pkg-grid" id="pkgGrid"></div>
+        <div class="pkg-more">
+          <details class="pkg-details reveal">
+            <summary data-i18n="pkg.extrasTitle">Extras para cualquier paquete</summary>
+            <table class="pkg-extras" id="pkgExtras"></table>
+          </details>
+          <details class="pkg-details reveal">
+            <summary data-i18n="pkg.condTitle">Condiciones</summary>
+            <ol class="pkg-cond" id="pkgCond"></ol>
+          </details>
+        </div>
+      </div>
+    </div>
+
     <!-- ============ EXPERIENCE ============ -->
     <section class="section" id="experiencia">
       <div class="section-head">
-        <p class="eyebrow">05 — <span data-i18n="exp.eyebrow">Trayectoria</span></p>
+        <p class="eyebrow">03 — <span data-i18n="exp.eyebrow">Trayectoria</span></p>
         <h2 class="section-title"><span class="split" data-i18n="exp.t1">Experiencia</span> <span class="hl split" data-i18n="exp.t2">& formación</span></h2>
       </div>
       <div class="exp-wrap">
         <ol class="timeline" id="timeline"></ol>
         <aside class="hire-card reveal">
-          <span class="sticker s-lime mini" aria-hidden="true">Open to work ✶</span>
+          <span class="sticker s-lime mini" aria-hidden="true">Full-time ✶</span>
           <p class="eyebrow" data-i18n="hire.eyebrow">¿Reclutando?</p>
           <h3 data-i18n="hire.title">Busco sumarme a un equipo creativo de tiempo completo.</h3>
           <p data-i18n="hire.text">Diseño gráfico, branding, social media o postproducción. Presencial en Medellín o remoto para cualquier país.</p>
@@ -187,7 +184,7 @@
     <section class="contact" id="contacto">
       <div class="marquee contact-marquee" aria-hidden="true"><div class="marquee-track" id="marquee2"></div></div>
       <div class="contact-inner">
-        <p class="eyebrow">06 — <span data-i18n="ct.eyebrow">Contacto</span></p>
+        <p class="eyebrow">04 — <span data-i18n="ct.eyebrow">Contacto</span></p>
         <h2 class="contact-title"><span class="split" data-i18n="ct.t1">¿Tienes un proyecto</span> <span class="sel"><span class="split accent" data-i18n="ct.t2">en mente?</span><b></b><b></b><b></b><b></b></span></h2>
         <p class="section-lead reveal" data-i18n="ct.lead">Cuéntame qué necesitas y te envío una cotización personalizada en menos de 48 horas.</p>
         <div class="contact-actions">
@@ -213,8 +210,6 @@
 
   <footer class="footer">
     <span>© <span id="year"></span> María Camila Muñoz Cano</span>
-    <span data-i18n="ft.made">Diseñado con intención en Medellín, Colombia</span>
-    <a href="#top" data-i18n="ft.top">Volver arriba ↑</a>
   </footer>
 
   <!-- ============ VIEWER ============ -->
