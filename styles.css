@@ -724,3 +724,7 @@ html, body { overflow-x: clip; }
   .pkg-open-wrap { justify-content: center; }
   .pkg-pola { width: 170px; }
 }
+
+/* Menos espacio entre "Ver la sesión completa" (Fotografía) y Trayectoria */
+#cat-photo .cat-inner:last-child { padding-bottom: 24px; }
+#experiencia { padding-top: clamp(44px, 5vw, 70px); }
