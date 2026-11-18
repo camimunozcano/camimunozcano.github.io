@@ -25,7 +25,7 @@ const CATEGORIES = [
         es: { title: "Vabes · Identidad de marca", desc: "Identidad visual de la estrategia a la entrega final: logotipo, paleta, tipografía, merch, stickers y stand de marca." },
         en: { title: "Vabes · Brand identity", desc: "Visual identity from strategy to final delivery: logo, palette, typography, merch, stickers and brand booth." } },
       { id: "donabel", client: "Café Don Abel", year: "2026", behance: "https://www.behance.net/camilamunoz1",
-        swatches: ["#173f31", "#f4ecdb", "#c99d6c", "#3b2112"], images: L("donabel", 6),
+        swatches: ["#173f31", "#f4ecdb", "#c99d6c", "#3b2112"], images: L("donabel", 5),
         es: { title: "Café Don Abel · Identidad de marca", desc: "Marca para un café de origen de Pitalito, Huila: logotipo orgánico, etiqueta con la ficha de la finca, empaque y papelería." },
         en: { title: "Café Don Abel · Brand identity", desc: "Brand for a single-origin coffee from Pitalito, Huila: organic logo, label with the farm's details, packaging and stationery." } },
       { id: "ocre", client: "Ocre", year: "2026", behance: "https://www.behance.net/camilamunoz1",
