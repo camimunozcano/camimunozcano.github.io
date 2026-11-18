@@ -24,6 +24,18 @@ const CATEGORIES = [
         swatches: ["#6c3bd1", "#c9b6ff", "#1b1b1b", "#ffffff"], images: L("vabes", 11),
         es: { title: "Vabes · Identidad de marca", desc: "Identidad visual de la estrategia a la entrega final: logotipo, paleta, tipografía, merch, stickers y stand de marca." },
         en: { title: "Vabes · Brand identity", desc: "Visual identity from strategy to final delivery: logo, palette, typography, merch, stickers and brand booth." } },
+      { id: "donabel", client: "Café Don Abel", year: "2026", behance: "https://www.behance.net/camilamunoz1",
+        swatches: ["#173f31", "#f4ecdb", "#c99d6c", "#3b2112"], images: L("donabel", 6),
+        es: { title: "Café Don Abel · Identidad de marca", desc: "Marca para un café de origen de Pitalito, Huila: logotipo orgánico, etiqueta con la ficha de la finca, empaque y papelería." },
+        en: { title: "Café Don Abel · Brand identity", desc: "Brand for a single-origin coffee from Pitalito, Huila: organic logo, label with the farm's details, packaging and stationery." } },
+      { id: "ocre", client: "Ocre", year: "2026", behance: "https://www.behance.net/camilamunoz1",
+        swatches: ["#2a2622", "#f6f1e8", "#c8a96a", "#8a3b1e"], images: L("ocre", 7),
+        es: { title: "Ocre · Identidad de marca", desc: "Identidad para una marca de diseño de mobiliario en mármol: logotipo de líneas finas, versiones sobre mármol, placa en latón, papelería y catálogo." },
+        en: { title: "Ocre · Brand identity", desc: "Identity for a marble furniture design brand: fine-line logo, marble versions, brass plaque, stationery and catalogue." } },
+      { id: "nodo", client: "NODO", year: "2026", behance: "https://www.behance.net/camilamunoz1",
+        swatches: ["#0b0b0b", "#f2f2f2", "#6d3cf0", "#3c8cff"], images: L("nodo", 5),
+        es: { title: "NODO · Identidad de marca", desc: "Marca para un colectivo de fiestas techno: logotipo modular, variantes en movimiento, pósters, boletería, manillas y merch." },
+        en: { title: "NODO · Brand identity", desc: "Brand for a techno party collective: modular logo, motion variants, posters, tickets, wristbands and merch." } },
       { id: "manual", client: "Torregroza & Jara", year: "2022", behance: BE + "147782541",
         swatches: ["#111111", "#d4af37", "#f3f0ea", "#7a7a7a"],
         images: M("max_1200_webp", ["440491147782541.62c889e8968ad.jpg", "bb5e93147782541.62c889e895945.jpg", "f46d4a147782541.62c889e897859.jpg", "a850d6147782541.62c889e89465e.jpg", "30773b147782541.62c889e895dce.jpg", "e30d4f147782541.62c889e897d2e.jpg", "feeaa5147782541.62c889e896481.jpg", "522ec1147782541.62c889e896f25.jpg", "7ee9ba147782541.62c889e897431.jpg", "7d01ba147782541.62c889e894b8c.jpg", "336102147782541.62c889e89528a.jpg"]),
@@ -159,16 +171,16 @@ const SERVICES = [
     es: { t: "Identidad visual & branding", d: "Marcas con personalidad, coherentes en cada punto de contacto. Del concepto al manual de marca listo para usar.", tags: ["Logotipo", "Paleta & tipografía", "Manual de marca", "Papelería", "Empaques"] },
     en: { t: "Visual identity & branding", d: "Brands with personality, consistent at every touchpoint. From concept to a ready-to-use brand book.", tags: ["Logo", "Color & type", "Brand guidelines", "Stationery", "Packaging"] } },
   { star: true,
-    es: { t: "Postproducción audiovisual & motion", d: "Videos que detienen el scroll: edición, ritmo, color y motion graphics para reels, anuncios y contenido de marca.", tags: ["Edición de video", "Motion graphics", "Reels & TikTok", "Corrección de color", "Animación de logo"] },
-    en: { t: "Video post-production & motion", d: "Videos that stop the scroll: editing, pacing, color and motion graphics for reels, ads and brand content.", tags: ["Video editing", "Motion graphics", "Reels & TikTok", "Color grading", "Logo animation"] } },
-  { es: { t: "Contenido para redes sociales", d: "Posts, carruseles e historias con una línea gráfica clara para que tu marca se reconozca a primera vista.", tags: ["Parrilla mensual", "Carruseles", "Historias", "Plantillas"] },
+    es: { t: "Contenido para redes sociales", d: "Posts, carruseles e historias con una línea gráfica clara para que tu marca se reconozca a primera vista.", tags: ["Parrilla mensual", "Carruseles", "Historias", "Plantillas"] },
     en: { t: "Social media content", d: "Posts, carousels and stories with a clear visual system so your brand is recognized at first glance.", tags: ["Monthly grid", "Carousels", "Stories", "Templates"] } },
+  { es: { t: "Postproducción audiovisual & motion", d: "Videos que detienen el scroll: edición, ritmo, color y motion graphics para reels, anuncios y contenido de marca.", tags: ["Edición de video", "Motion graphics", "Reels & TikTok", "Corrección de color", "Animación de logo"] },
+    en: { t: "Video post-production & motion", d: "Videos that stop the scroll: editing, pacing, color and motion graphics for reels, ads and brand content.", tags: ["Video editing", "Motion graphics", "Reels & TikTok", "Color grading", "Logo animation"] } },
   { es: { t: "Web, email & impresos", d: "Banners, email marketing, piezas editoriales e impresas, ilustración digital y retoque fotográfico.", tags: ["Banners web", "Email marketing", "Editorial", "Ilustración", "Retoque"] },
     en: { t: "Web, email & print", d: "Banners, email marketing, editorial and print pieces, digital illustration and photo retouching.", tags: ["Web banners", "Email marketing", "Editorial", "Illustration", "Retouching"] } }
 ];
 /* ---------- PAQUETES DE BRANDING (precios: COP y USD a TRM 3.350, redondeados) ---------- */
 const PACKAGES = [
-  { id: "esencial", cop: "1.000.000", usd: "300", rev: 2,
+  { id: "esencial", cop: "950.000", usd: "285", rev: 2,
     es: { name: "Esencial", tag: "Arranca tu marca", for: "Para emprendimientos que necesitan una imagen profesional rápido.", time: "7–10 días hábiles", base: "",
       items: ["Brief y llamada inicial", "2 propuestas de logo", "Logo principal + versión en una tinta", "Paleta de color (HEX, RGB, CMYK)", "2 tipografías recomendadas", "Tarjeta de presentación", "Mini guía de uso del logo", "Archivos PNG, JPG, PDF y SVG"] },
     en: { name: "Essential", tag: "Launch your brand", for: "For new businesses that need a professional look, fast.", time: "7–10 business days", base: "",
@@ -276,9 +288,9 @@ const I18N = {
     "pkg.extrasTitle": "Extras para cualquier paquete", "pkg.condTitle": "Condiciones", "pkg.rev": "rondas de revisión",
     "pkg.cta": "Quiero este paquete", "pkg.wa": "¡Hola María Camila! Me interesa el paquete de branding", "pkg.cur": "COP", "pkg.alt": "USD",
     "about.eyebrow": "Sobre mí", "about.t1": "Estrategia en la cabeza,", "about.t2": "sensibilidad en las manos.",
-    "about.p1": "Hola, soy María Camila, Comunicadora Gráfica Publicitaria con 5 años de experiencia. Mi enfoque es conectar la identidad visual y el contenido digital con los objetivos de negocio de cada marca: que lo que se ve bien también funcione y dé resultados.",
-    "about.p2": "Trabajo desde la dirección de arte y el branding, apoyada en la investigación del consumidor y el benchmarking para entender el mercado antes de diseñar. Después mido: defino KPIs creativos y uso el análisis de datos para optimizar el rendimiento visual de cada pieza.",
-    "about.p3": "Organizo cada proyecto con flujos de trabajo eficientes en Notion, para cumplir tiempos y que el equipo siempre sepa en qué vamos. Disfruto proponer ideas nuevas, experimentar y aprender en el proceso.",
+    "about.p1": "Soy María Camila, Comunicadora Gráfica Publicitaria con 5 años de experiencia. Conecto la identidad visual y el contenido digital con los objetivos de negocio de cada marca.",
+    "about.p2": "Trabajo desde la dirección de arte y el branding, con investigación del consumidor, benchmarking y KPIs creativos para que cada pieza, además de verse bien, dé resultados.",
+    "about.p3": "",
     "about.sw": "Herramientas",
     "about.sk": "Habilidades", "about.l1": "Café", "about.l2": "Animales", "about.l3": "Ilustración", "about.l4": "Teatro", "about.l5": "Música",
     "exp.eyebrow": "Trayectoria", "exp.t1": "Experiencia", "exp.t2": "& formación",
@@ -288,7 +300,7 @@ const I18N = {
     "pkg.hint": "¿lista para empezar? mira los paquetes →", "pkg.btn": "Ver paquetes de branding",
     "ct.eyebrow": "Contacto", "ct.t1": "¿Tienes un proyecto", "ct.t2": "en mente?",
     "ct.lead": "Cuéntame qué necesitas y te envío una cotización personalizada en menos de 48 horas.", "ct.mail": "Escríbeme un correo",
-    "ft.made": "Diseñado con intención en Medellín, Colombia", "ft.top": "Volver arriba ↑",
+    "ft.rights": "Todos los derechos reservados.", "work.band": ["Conoce mi trabajo", "explora los diseños", "Portafolio", "toca cualquier pieza"],
     "v.reply": "Enviar mensaje", "v.likes": "Les gusta a", "v.others": "y otras personas", "v.inbox": "Recibidos", "v.promo": "Promociones", "v.sent": "Enviados", "v.mailbox": "Correo",
     "mail.subject": "Cotización de proyecto", "wa.text": "¡Hola María Camila! Vi tu portafolio y quiero cotizar un proyecto.",
     "badge": "BRANDING · MOTION · CONTENIDO · DISEÑO · ", "title": "María Camila Muñoz · Diseño, Branding & Audiovisual"
@@ -313,9 +325,9 @@ const I18N = {
     "pkg.extrasTitle": "Add-ons for any package", "pkg.condTitle": "Terms", "pkg.rev": "revision rounds",
     "pkg.cta": "I want this package", "pkg.wa": "Hi María Camila! I'm interested in the branding package", "pkg.cur": "USD", "pkg.alt": "COP",
     "about.eyebrow": "About me", "about.t1": "Strategy in mind,", "about.t2": "craft in hand.",
-    "about.p1": "Hi, I'm María Camila, an advertising graphic communicator with 5 years of experience. My focus is connecting visual identity and digital content with each brand's business goals: what looks good should also perform and deliver results.",
-    "about.p2": "I work through art direction and branding, backed by consumer research and benchmarking to understand the market before I design. Then I measure: I set creative KPIs and use data analysis to optimize the visual performance of every piece.",
-    "about.p3": "I run every project with efficient workflows in Notion, so deadlines are met and the team always knows where things stand. I love bringing new ideas, experimenting and learning along the way.",
+    "about.p1": "I'm María Camila, an advertising graphic communicator with 5 years of experience. I connect visual identity and digital content with each brand's business goals.",
+    "about.p2": "I work through art direction and branding, backed by consumer research, benchmarking and creative KPIs, so every piece doesn't just look good: it delivers results.",
+    "about.p3": "",
     "about.sw": "Tools",
     "about.sk": "Skills", "about.l1": "Coffee", "about.l2": "Animals", "about.l3": "Illustration", "about.l4": "Theatre", "about.l5": "Music",
     "exp.eyebrow": "Background", "exp.t1": "Experience", "exp.t2": "& education",
@@ -325,7 +337,7 @@ const I18N = {
     "pkg.hint": "ready to start? see the packages →", "pkg.btn": "See branding packages",
     "ct.eyebrow": "Contact", "ct.t1": "Got a project", "ct.t2": "in mind?",
     "ct.lead": "Tell me what you need and I'll send you a tailored quote within 48 hours.", "ct.mail": "Send me an email",
-    "ft.made": "Designed with intention in Medellín, Colombia", "ft.top": "Back to top ↑",
+    "ft.rights": "All rights reserved.", "work.band": ["See my work", "explore the designs", "Portfolio", "tap any piece"],
     "v.reply": "Send message", "v.likes": "Liked by", "v.others": "and others", "v.inbox": "Inbox", "v.promo": "Promotions", "v.sent": "Sent", "v.mailbox": "Mail",
     "mail.subject": "Project inquiry", "wa.text": "Hi María Camila! I saw your portfolio and I'd like a quote for a project.",
     "badge": "BRANDING · MOTION · CONTENT · DESIGN · ", "title": "María Camila Muñoz · Design, Branding & Video"
@@ -463,12 +475,19 @@ function renderCategory(c, i) {
   const d = c[lang];
   const n = c.projects.length;
   let body = "";
-  if (c.type === "ai") body = `<div class="ai-grid">${c.projects.map(cardTpl.ai).join("")}</div>`;
+  // Branding: una pestaña por marca; cada una muestra su ventana de Illustrator en grande
+  if (c.type === "ai") body = `
+    <div class="soc-tabs" role="tablist">${c.projects.map((p, k) => `
+      <button class="soc-tab${k ? "" : " on"}" role="tab" aria-selected="${!k}" data-tab="${p.id}">${esc(p.client)}</button>`).join("")}
+      <span class="soc-ink" aria-hidden="true"></span>
+    </div>
+    ${c.projects.map((p, k) => `
+    <div class="soc-panel ai-single${k ? "" : " on"}" role="tabpanel" data-panel="${p.id}"${k ? " hidden" : ""}>${cardTpl.ai(p)}</div>`).join("")}`;
   if (c.type === "feed" || c.type === "story" || c.type === "reel")
     body = `<div class="h-scroll"><div class="phones">${c.projects.map(cardTpl[c.type]).join("")}</div></div>`;
   if (c.type === "social") body = `
     <div class="soc-tabs" role="tablist">${c.groups.map((g, k) => `
-      <button class="soc-tab${k ? "" : " on"}" role="tab" aria-selected="${!k}" data-tab="${g.id}">${esc(g[lang].name)} <small>${g.projects.length}</small></button>`).join("")}
+      <button class="soc-tab${k ? "" : " on"}" role="tab" aria-selected="${!k}" data-tab="${g.id}">${esc(g[lang].name)}</button>`).join("")}
       <span class="soc-ink" aria-hidden="true"></span>
     </div>
     ${c.groups.map((g, k) => `
@@ -491,7 +510,6 @@ function renderCategory(c, i) {
       <span class="cat-note">${esc(d.note)}</span>
       <header class="cat-head">
         <span class="cat-num">${pad(i + 1)}</span>
-        <p class="eyebrow" style="margin:0">${t("cat.eyebrow")} · ${n} ${n === 1 ? t("cat.count1") : t("cat.countN")}</p>
         <h2 class="cat-title"><span class="sel"><span class="split">${esc(d.name)}</span><b></b><b></b><b></b><b></b></span></h2>
         <p class="cat-desc reveal" style="grid-column:1/-1">${esc(d.desc)}</p>
       </header>
@@ -521,6 +539,7 @@ function render() {
   const mq = arr => { const s = arr.map(w => `<span>${esc(w)}</span>`).join(""); return s + s + s + s; };
   $("#marquee").innerHTML = mq(MARQUEE[lang]); $("#marquee").dataset.speed = 34;
   $("#marquee2").innerHTML = mq(MARQUEE2[lang]); $("#marquee2").dataset.speed = -30;
+  $("#workBand").innerHTML = mq(t("work.band")); $("#workBand").dataset.speed = 30;
 
   $("#categories").innerHTML = renderList().map(renderCategory).join("");
 
@@ -852,7 +871,7 @@ document.addEventListener("click", e => {
   sec.querySelectorAll(".soc-panel").forEach(p => {
     const on = p.dataset.panel === tab.dataset.tab;
     p.hidden = !on; p.classList.toggle("on", on);
-    if (on) { p.classList.remove("enter"); void p.offsetWidth; p.classList.add("enter"); p.querySelector(".h-scroll").scrollLeft = 0; }
+    if (on) { p.classList.remove("enter"); void p.offsetWidth; p.classList.add("enter"); const hs = p.querySelector(".h-scroll"); if (hs) hs.scrollLeft = 0; }
   });
   placeInk(tabs);
 });

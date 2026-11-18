@@ -681,3 +681,46 @@ html, body { overflow-x: clip; }
   .blob, .sticker, .s-star, .badge svg, .badge > span, .ai-cursor, .ai-board::after, .hire-card .sticker, .vfinder .focus { animation: none !important; }
   .reveal { transform: none; }
 }
+
+/* =========================================================
+   Ajustes nov-18: sobre mí compacto, polaroid en proceso,
+   franja "Conoce mi trabajo", branding por pestañas, pie centrado
+   ========================================================= */
+.about { grid-template-columns: 1fr 1.05fr; align-items: center; }
+.about .about-copy p { max-width: 32em; font-size: 1.05rem; }
+.about .about-likes { margin-top: 26px; }
+.about .skills { margin-top: 0; padding-top: 0; border-top: 0; }
+
+.pkg-open-wrap { justify-content: flex-start; gap: 28px 44px; margin-top: 48px; }
+.pkg-pola { width: 210px; padding: 9px 9px 40px; rotate: -5deg; flex: none; }
+.pkg-pola figcaption { font-size: 1.2rem; bottom: 7px; }
+.pkg-pola .tape { width: 80px; height: 22px; top: -10px; }
+.pkg-open-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+
+.work-band { padding: 46px 0 6px; overflow: hidden; }
+.work-marquee { background: var(--lime); color: var(--bg); rotate: 2deg; margin: 0 -20px; padding: 26px 0; }
+.work-marquee .marquee-track span { font-size: clamp(2rem, 4.6vw, 3.6rem); }
+.work-marquee .marquee-track span:nth-child(even) { color: var(--rasp); }
+.work-marquee .marquee-track span:nth-child(odd)::after { color: var(--rasp); }
+
+.cat-head { margin-bottom: clamp(20px, 3vw, 34px); }
+.cat-num { grid-row: auto; align-self: end; }
+.cat[data-type="photo"] .strip + .cat-inner { padding-bottom: 26px; }
+.soc-desc { margin-bottom: 0; }
+
+.ai-single .pcard { display: grid; grid-template-columns: 1.7fr 1fr; gap: 36px; align-items: center; }
+.ai-single .pcard-cap { margin: 0; }
+.ai-single .pcard-cap h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
+.ai-single .pcard-cap p { font-size: .98rem; margin-top: 10px; line-height: 1.6; }
+.ai-single .ai-board { aspect-ratio: 16 / 11; }
+
+.footer { justify-content: center; text-align: center; }
+
+@media (max-width: 980px) {
+  .about { grid-template-columns: 1fr; }
+  .ai-single .pcard { grid-template-columns: 1fr; gap: 18px; }
+}
+@media (max-width: 760px) {
+  .pkg-open-wrap { justify-content: center; }
+  .pkg-pola { width: 170px; }
+}

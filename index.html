@@ -91,12 +91,11 @@
 
     <!-- ============ ABOUT ============ -->
     <section class="section about" id="sobre-mi">
-      <div class="about-media">
-        <figure class="polaroid big" data-speed="-0.04">
-          <span class="tape" aria-hidden="true"></span>
-          <img src="assets/img/maria-camila.webp" alt="" loading="lazy">
-          <figcaption class="hand">María Camila ✶ MDE</figcaption>
-        </figure>
+      <div class="about-copy">
+        <p class="eyebrow">01 — <span data-i18n="about.eyebrow">Sobre mí</span></p>
+        <h2 class="section-title"><span class="split" data-i18n="about.t1">Estrategia en la cabeza,</span> <span class="hl split" data-i18n="about.t2">sensibilidad en las manos.</span></h2>
+        <p class="reveal" data-i18n="about.p1"></p>
+        <p class="reveal" data-i18n="about.p2"></p>
         <ul class="about-likes" aria-label="Cosas que me gustan">
           <li>☕ <span data-i18n="about.l1">Café</span></li>
           <li>🐾 <span data-i18n="about.l2">Animales</span></li>
@@ -105,16 +104,9 @@
           <li>♫ <span data-i18n="about.l5">Música</span></li>
         </ul>
       </div>
-      <div class="about-copy">
-        <p class="eyebrow">01 — <span data-i18n="about.eyebrow">Sobre mí</span></p>
-        <h2 class="section-title"><span class="split" data-i18n="about.t1">Estrategia en la cabeza,</span> <span class="hl split" data-i18n="about.t2">sensibilidad en las manos.</span></h2>
-        <p class="reveal" data-i18n="about.p1"></p>
-        <p class="reveal" data-i18n="about.p2"></p>
-        <p class="reveal" data-i18n="about.p3"></p>
-        <div class="skills">
-          <div><h4 data-i18n="about.sk">Habilidades</h4><ul class="chips" id="skillChips"></ul></div>
-          <div><h4 data-i18n="about.sw">Herramientas</h4><ul class="soft" id="softList"></ul></div>
-        </div>
+      <div class="skills">
+        <div><h4 data-i18n="about.sk">Habilidades</h4><ul class="chips" id="skillChips"></ul></div>
+        <div><h4 data-i18n="about.sw">Herramientas</h4><ul class="soft" id="softList"></ul></div>
       </div>
     </section>
 
@@ -130,14 +122,27 @@
         <h3 class="sub-title" data-i18n="proc.title">Cómo trabajamos juntos</h3>
         <ol class="proc-steps" id="procSteps"></ol>
         <div class="pkg-open-wrap reveal">
-          <p class="hand pkg-open-note" data-i18n="pkg.hint">¿lista la idea? mira los paquetes →</p>
-          <button class="btn btn-primary magnetic" data-pkg-open><span data-i18n="pkg.btn">Ver paquetes de branding</span> <span aria-hidden="true">✶</span></button>
+          <figure class="polaroid pkg-pola" data-speed="-0.03">
+            <span class="tape" aria-hidden="true"></span>
+            <img src="assets/img/maria-camila.webp" alt="" loading="lazy">
+            <figcaption class="hand">María Camila ✶ MDE</figcaption>
+          </figure>
+          <div class="pkg-open-copy">
+            <p class="hand pkg-open-note" data-i18n="pkg.hint">¿lista la idea? mira los paquetes →</p>
+            <button class="btn btn-primary magnetic" data-pkg-open><span data-i18n="pkg.btn">Ver paquetes de branding</span> <span aria-hidden="true">✶</span></button>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- ============ WORK (categories rendered by JS) ============ -->
-    <div id="trabajo"><div id="categories"></div></div>
+    <div id="trabajo">
+      <!-- Franja que separa la sección de diseños -->
+      <div class="work-band" aria-label="Conoce mi trabajo">
+        <div class="marquee work-marquee" aria-hidden="true"><div class="marquee-track" id="workBand"></div></div>
+      </div>
+      <div id="categories"></div>
+    </div>
 
     <!-- ============ PAQUETES (ventana aparte, se abre con [data-pkg-open] o #paquetes) ============ -->
     <div class="pkg-overlay" id="paquetes" role="dialog" aria-modal="true" aria-labelledby="pkgTitle" hidden>
@@ -209,7 +214,7 @@
   </main>
 
   <footer class="footer">
-    <span>© <span id="year"></span> María Camila Muñoz Cano</span>
+    <span>© <span id="year"></span> María Camila Muñoz Cano. <span data-i18n="ft.rights">Todos los derechos reservados.</span></span>
   </footer>
 
   <!-- ============ VIEWER ============ -->
