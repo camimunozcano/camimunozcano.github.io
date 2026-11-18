@@ -125,11 +125,11 @@ const CATEGORIES = [
     en: { name: "Web & email", desc: "Web banners and email marketing that convert: clear hierarchy, hero product and strong calls to action.", note: "click here ↓" },
     projects: [
       { id: "glimmer-web", frame: "browser", client: "glimmer.co", year: "2026", behance: BE + "257386965", images: L("glimmer-web", 1),
-        es: { title: "Glimmer · Banner web", desc: "Banner principal para el sitio web de la colección Glimmer." },
-        en: { title: "Glimmer · Web banner", desc: "Hero banner for the Glimmer collection website." } },
+        es: { title: "Banner web", desc: "Banner principal para el sitio web de la colección Glimmer." },
+        en: { title: "Web banner", desc: "Hero banner for the Glimmer collection website." } },
       { id: "glimmer-mail", frame: "mail", client: "Glimmer", year: "2026", behance: BE + "257386965", images: L("glimmer-mail", 1),
-        es: { title: "Glimmer · Email marketing", desc: "Email de lanzamiento con producto, beneficios y llamado a la acción.", subject: "✨ Tu nuevo glow ya está aquí" },
-        en: { title: "Glimmer · Email marketing", desc: "Launch email with product, benefits and a call to action.", subject: "✨ Your new glow is here" } }
+        es: { title: "Email marketing", desc: "Email de lanzamiento con producto, beneficios y llamado a la acción.", subject: "✨ Tu nuevo glow ya está aquí" },
+        en: { title: "Email marketing", desc: "Launch email with product, benefits and a call to action.", subject: "✨ Your new glow is here" } }
     ]
   },
   {
@@ -297,7 +297,7 @@ const I18N = {
     "hire.eyebrow": "Para equipos y agencias", "hire.title": "Estrategia, diseño y video en una sola persona para tu equipo.",
     "hire.text": "Llego con dirección de arte, branding, contenido para redes y postproducción, y con la costumbre de medir lo que funciona. Disponible para roles de tiempo completo, en Medellín o en remoto.",
     "hire.cv": "Ver mi CV", "hire.contact": "Hablemos de tu equipo",
-    "pkg.hint": "¿lista para empezar? mira los paquetes →", "pkg.btn": "Ver paquetes de branding",
+    "pkg.hint": "¿lista para empezar? mira los paquetes →", "tabs.hint": "hay más, explora →", "tabs.next": "Siguiente", "pkg.btn": "Ver paquetes de branding",
     "ct.eyebrow": "Contacto", "ct.t1": "¿Tienes un proyecto", "ct.t2": "en mente?",
     "ct.lead": "Cuéntame qué necesitas y te envío una cotización personalizada en menos de 48 horas.", "ct.mail": "Escríbeme un correo",
     "ft.rights": "Todos los derechos reservados.", "work.band": ["Conoce mi trabajo", "explora los diseños", "Portafolio", "toca cualquier pieza"],
@@ -334,7 +334,7 @@ const I18N = {
     "hire.eyebrow": "For teams & agencies", "hire.title": "Strategy, design and video, all in one hire for your team.",
     "hire.text": "I bring art direction, branding, social content and post-production, plus the habit of measuring what works. Available for full-time roles, in Medellín or remote.",
     "hire.cv": "See my résumé", "hire.contact": "Let's talk about your team",
-    "pkg.hint": "ready to start? see the packages →", "pkg.btn": "See branding packages",
+    "pkg.hint": "ready to start? see the packages →", "tabs.hint": "there's more, explore →", "tabs.next": "Next", "pkg.btn": "See branding packages",
     "ct.eyebrow": "Contact", "ct.t1": "Got a project", "ct.t2": "in mind?",
     "ct.lead": "Tell me what you need and I'll send you a tailored quote within 48 hours.", "ct.mail": "Send me an email",
     "ft.rights": "All rights reserved.", "work.band": ["See my work", "explore the designs", "Portfolio", "tap any piece"],
@@ -460,6 +460,11 @@ const SOCIAL = {
   es: { name: "Redes sociales", desc: "Carruseles, posts, historias y reels con una línea gráfica clara para cada marca. Elige un formato y toca cualquier celular para verlo completo.", note: "elige un formato ✶" },
   en: { name: "Social media", desc: "Carousels, posts, stories and reels with a clear visual system for each brand. Pick a format and tap any phone to see it in full.", note: "pick a format ✶" }
 };
+// Orden en que se muestran las pestañas
+const SOCIAL_ORDER = ["posts", "stories", "carousels", "videos"];
+const BRAND_ORDER = ["vabes", "donabel", "nodo", "manual", "ocre"];
+const byOrder = order => (a, b) => (order.indexOf(a.id) + 1 || 99) - (order.indexOf(b.id) + 1 || 99);
+
 function renderList() {
   const list = [];
   CATEGORIES.forEach(c => {
@@ -468,7 +473,22 @@ function renderList() {
     if (!s) { s = { id: "social", type: "social", es: SOCIAL.es, en: SOCIAL.en, groups: [], projects: [] }; list.push(s); }
     s.groups.push(c); s.projects = s.projects.concat(c.projects);
   });
+  const s = list.find(x => x.id === "social"); if (s) s.groups.sort(byOrder(SOCIAL_ORDER));
   return list;
+}
+
+// Barra de pestañas: miniatura + nombre, invitación a explorar, botón siguiente y contador
+function tabsBar(items) {
+  return `
+    <div class="soc-bar">
+      <span class="soc-hint hand">${t("tabs.hint")}</span>
+      <div class="soc-tabs" role="tablist">${items.map((it, k) => `
+        <button class="soc-tab${k ? "" : " on"}" role="tab" aria-selected="${!k}" data-tab="${it.id}" style="--i:${k}">
+          <img src="${it.thumb}" alt="" loading="lazy"><span>${esc(it.name)}</span></button>`).join("")}
+      </div>
+      <div class="soc-nav"><span class="soc-count"><b>01</b> / ${pad(items.length)}</span>
+        <button class="soc-next" data-next aria-label="${t("tabs.next")}">→</button></div>
+    </div>`;
 }
 
 function renderCategory(c, i) {
@@ -476,20 +496,15 @@ function renderCategory(c, i) {
   const n = c.projects.length;
   let body = "";
   // Branding: una pestaña por marca; cada una muestra su ventana de Illustrator en grande
+  const brands = c.type === "ai" ? [...c.projects].sort(byOrder(BRAND_ORDER)) : [];
   if (c.type === "ai") body = `
-    <div class="soc-tabs" role="tablist">${c.projects.map((p, k) => `
-      <button class="soc-tab${k ? "" : " on"}" role="tab" aria-selected="${!k}" data-tab="${p.id}">${esc(p.client)}</button>`).join("")}
-      <span class="soc-ink" aria-hidden="true"></span>
-    </div>
-    ${c.projects.map((p, k) => `
+    ${tabsBar(brands.map(p => ({ id: p.id, name: p.client, thumb: p.images[0] })))}
+    ${brands.map((p, k) => `
     <div class="soc-panel ai-single${k ? "" : " on"}" role="tabpanel" data-panel="${p.id}"${k ? " hidden" : ""}>${cardTpl.ai(p)}</div>`).join("")}`;
   if (c.type === "feed" || c.type === "story" || c.type === "reel")
     body = `<div class="h-scroll"><div class="phones">${c.projects.map(cardTpl[c.type]).join("")}</div></div>`;
   if (c.type === "social") body = `
-    <div class="soc-tabs" role="tablist">${c.groups.map((g, k) => `
-      <button class="soc-tab${k ? "" : " on"}" role="tab" aria-selected="${!k}" data-tab="${g.id}">${esc(g[lang].name)}</button>`).join("")}
-      <span class="soc-ink" aria-hidden="true"></span>
-    </div>
+    ${tabsBar(c.groups.map(g => ({ id: g.id, name: g[lang].name, thumb: g.projects[0].images[0] })))}
     ${c.groups.map((g, k) => `
     <div class="soc-panel${k ? "" : " on"}" role="tabpanel" data-panel="${g.id}"${k ? " hidden" : ""}>
       <p class="soc-desc">${esc(g[lang].desc)}</p>
@@ -865,9 +880,19 @@ function placeInk(tabs) {
   if (on && ink) { ink.style.width = on.offsetWidth + "px"; ink.style.transform = `translateX(${on.offsetLeft}px)`; }
 }
 document.addEventListener("click", e => {
+  // botón → : pasa a la siguiente pestaña (vuelve a la primera al final)
+  const nx = e.target.closest("[data-next]");
+  if (nx) {
+    const all = [...nx.closest(".soc-bar").querySelectorAll(".soc-tab")];
+    const i = all.findIndex(b => b.classList.contains("on"));
+    all[(i + 1) % all.length].click(); return;
+  }
   const tab = e.target.closest(".soc-tab"); if (!tab) return;
   const sec = tab.closest(".cat"), tabs = tab.parentElement;
   tabs.querySelectorAll(".soc-tab").forEach(b => { const on = b === tab; b.classList.toggle("on", on); b.setAttribute("aria-selected", on); });
+  const all = [...tabs.querySelectorAll(".soc-tab")], cnt = sec.querySelector(".soc-count b");
+  if (cnt) cnt.textContent = pad(all.indexOf(tab) + 1);
+  tab.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
   sec.querySelectorAll(".soc-panel").forEach(p => {
     const on = p.dataset.panel === tab.dataset.tab;
     p.hidden = !on; p.classList.toggle("on", on);
