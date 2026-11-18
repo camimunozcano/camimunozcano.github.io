@@ -170,6 +170,49 @@ const SERVICES = [
   { es: { t: "Web, email & impresos", d: "Banners, email marketing, piezas editoriales e impresas, ilustración digital y retoque fotográfico.", tags: ["Banners web", "Email marketing", "Editorial", "Ilustración", "Retoque"] },
     en: { t: "Web, email & print", d: "Banners, email marketing, editorial and print pieces, digital illustration and photo retouching.", tags: ["Web banners", "Email marketing", "Editorial", "Illustration", "Retouching"] } }
 ];
+/* ---------- PAQUETES DE BRANDING (precios: COP y USD a TRM 3.350, redondeados) ---------- */
+const PACKAGES = [
+  { id: "esencial", cop: "850.000", usd: "250", rev: 2,
+    es: { name: "Esencial", tag: "Arranca tu marca", for: "Para emprendimientos que necesitan una imagen profesional rápido.", time: "7–10 días hábiles", base: "",
+      items: ["Brief y llamada inicial", "2 propuestas de logo", "Logo principal + versión en una tinta", "Paleta de color (HEX, RGB, CMYK)", "2 tipografías recomendadas", "Tarjeta de presentación", "Mini guía de uso del logo", "Archivos PNG, JPG, PDF y SVG"] },
+    en: { name: "Essential", tag: "Launch your brand", for: "For new businesses that need a professional look, fast.", time: "7–10 business days", base: "",
+      items: ["Brief and kickoff call", "2 logo concepts", "Main logo + one-color version", "Color palette (HEX, RGB, CMYK)", "2 recommended typefaces", "Business card", "Mini logo usage guide", "PNG, JPG, PDF and SVG files"] } },
+  { id: "profesional", cop: "1.900.000", usd: "570", rev: 3,
+    es: { name: "Profesional", tag: "Marca con presencia", for: "Para negocios que ya venden y necesitan verse consistentes en todos sus canales.", time: "2–3 semanas", base: "Todo lo del Esencial, más:",
+      items: ["Moodboard de dirección visual", "3 propuestas de logo", "Sistema de logo: horizontal, vertical, isotipo", "Patrón y elementos gráficos", "Papelería: tarjeta, hoja membrete y firma de correo", "Kit de redes: 3 plantillas + íconos de destacadas", "Guía de marca básica", "Archivos editables (AI)"] },
+    en: { name: "Professional", tag: "A brand with presence", for: "For businesses already selling that need to look consistent everywhere.", time: "2–3 weeks", base: "Everything in Essential, plus:",
+      items: ["Visual direction moodboard", "3 logo concepts", "Logo system: horizontal, vertical, symbol", "Pattern and graphic elements", "Stationery: business card, letterhead and email signature", "Social kit: 3 templates + highlight icons", "Basic brand guide", "Editable source files (AI)"] } },
+  { id: "integral", cop: "2.900.000", usd: "870", rev: 4, featured: true,
+    es: { name: "Integral", tag: "Marca completa", for: "Para marcas que quieren una identidad sólida, con estrategia y un manual que cualquiera pueda seguir.", time: "4–5 semanas", base: "Todo lo del Profesional, más:", badge: "★ el más completo",
+      items: ["Estrategia: benchmarking de 3–5 competidores, público, personalidad y tono", "Sistema de logo completo + favicon", "Set de 6 íconos de marca", "Papelería completa: sobre, carpeta y plantilla de cotización", "Kit de redes ampliado: 6 plantillas", "3 mockups de aplicación", "Animación del logo (5 s)", "Manual de marca completo", "30 días de acompañamiento"] },
+    en: { name: "Complete", tag: "The full brand", for: "For brands that want a solid identity, with strategy and guidelines anyone can follow.", time: "4–5 weeks", base: "Everything in Professional, plus:", badge: "★ the full package",
+      items: ["Strategy: benchmark of 3–5 competitors, audience, personality and tone", "Full logo system + favicon", "Set of 6 brand icons", "Full stationery: envelope, folder and quote template", "Extended social kit: 6 templates", "3 application mockups", "Logo animation (5 s)", "Complete brand guidelines", "30 days of post-launch support"] } }
+];
+const EXTRAS = [
+  ["Ronda de revisión adicional", "Extra revision round", "$120.000", "$35"],
+  ["Propuesta de logo adicional", "Extra logo concept", "$250.000", "$75"],
+  ["Animación de logo (Esencial o Profesional)", "Logo animation (Essential or Professional)", "$350.000", "$105"],
+  ["Plantilla de redes adicional", "Extra social template", "$60.000", "$20"],
+  ["Pieza de papelería adicional", "Extra stationery piece", "$90.000", "$25"],
+  ["Diseño de etiqueta o empaque", "Label or packaging design", "$400.000+", "$120+"],
+  ["Pasar de la guía básica al manual completo", "Upgrade basic guide to full guidelines", "$900.000", "$270"],
+  ["Entrega urgente (mitad del tiempo)", "Rush delivery (half the time)", "+30%", "+30%"]
+];
+const CONDITIONS = {
+  es: ["50% para iniciar y 50% al aprobar el diseño final, antes de entregar los editables.",
+    "Una ronda de revisión es un grupo de ajustes sobre la propuesta elegida. Cambiar de concepto después de aprobado cuenta como propuesta nueva.",
+    "Las rondas no usadas no se acumulan para otros servicios.",
+    "Los tiempos empiezan con el anticipo y el brief completo; si la respuesta del cliente se demora, la entrega se corre los mismos días.",
+    "Al pagar el 100% el cliente recibe los derechos de uso de su marca. El proyecto puede mostrarse en mi portafolio, salvo acuerdo de confidencialidad.",
+    "No incluye impresión, fuentes con licencia paga, fotografía profesional ni publicación de contenido."],
+  en: ["50% to start and 50% on final design approval, before editable files are delivered.",
+    "A revision round is one set of tweaks to the chosen concept. Changing concept after approval counts as a new concept.",
+    "Unused rounds don't carry over to other services.",
+    "Timelines start with the deposit and a complete brief; if client feedback is delayed, delivery moves by the same number of days.",
+    "On full payment the client receives the usage rights to their brand. The project may be shown in my portfolio unless a confidentiality agreement is in place.",
+    "Not included: printing, paid font licenses, professional photography or content publishing."]
+};
+
 const PROCESS = {
   es: [["Descubrir", "Una llamada para entender tu marca, tu público y tus objetivos."], ["Proponer", "Te envío propuesta, tiempos y cotización clara. Sin sorpresas."], ["Crear", "Concepto, diseño y rondas de ajustes contigo en cada etapa."], ["Entregar", "Archivos finales organizados y listos para usar en todo formato."]],
   en: [["Discover", "A call to understand your brand, your audience and your goals."], ["Propose", "You get a proposal, timeline and clear quote. No surprises."], ["Create", "Concept, design and feedback rounds with you at every step."], ["Deliver", "Organized final files, ready to use in every format."]]
@@ -232,6 +275,10 @@ const I18N = {
     "photo.cta": "Ver la sesión completa",
     "svc.eyebrow": "Lo que hago", "svc.t1": "Servicios para", "svc.t2": "marcas que quieren destacar",
     "proc.title": "Cómo trabajamos juntos",
+    "nav.pkg": "Paquetes", "pkg.title": "Paquetes de branding", "pkg.note": "elige el tuyo ✶",
+    "pkg.lead": "Tres niveles para cada etapa de tu negocio. Todos incluyen rondas de revisión, archivos finales listos para usar y acompañamiento en cada paso.",
+    "pkg.extrasTitle": "Extras para cualquier paquete", "pkg.condTitle": "Condiciones", "pkg.rev": "rondas de revisión",
+    "pkg.cta": "Quiero este paquete", "pkg.wa": "¡Hola María Camila! Me interesa el paquete de branding", "pkg.cur": "COP", "pkg.alt": "USD",
     "about.eyebrow": "Sobre mí", "about.t1": "Estrategia en la cabeza,", "about.t2": "sensibilidad en las manos.",
     "about.p1": "Hola, soy María Camila, Comunicadora Gráfica Publicitaria con 5 años de experiencia. Mi enfoque es conectar la identidad visual y el contenido digital con los objetivos de negocio de cada marca: que lo que se ve bien también funcione y dé resultados.",
     "about.p2": "Trabajo desde la dirección de arte y el branding, apoyada en la investigación del consumidor y el benchmarking para entender el mercado antes de diseñar. Después mido: defino KPIs creativos y uso el análisis de datos para optimizar el rendimiento visual de cada pieza.",
@@ -264,6 +311,10 @@ const I18N = {
     "photo.cta": "See the full shoot",
     "svc.eyebrow": "What I do", "svc.t1": "Services for", "svc.t2": "brands that want to stand out",
     "proc.title": "How we'll work together",
+    "nav.pkg": "Packages", "pkg.title": "Branding packages", "pkg.note": "pick yours ✶",
+    "pkg.lead": "Three levels for every stage of your business. All include revision rounds, ready-to-use final files and support at every step.",
+    "pkg.extrasTitle": "Add-ons for any package", "pkg.condTitle": "Terms", "pkg.rev": "revision rounds",
+    "pkg.cta": "I want this package", "pkg.wa": "Hi María Camila! I'm interested in the branding package", "pkg.cur": "USD", "pkg.alt": "COP",
     "about.eyebrow": "About me", "about.t1": "Strategy in mind,", "about.t2": "craft in hand.",
     "about.p1": "Hi, I'm María Camila, an advertising graphic communicator with 5 years of experience. My focus is connecting visual identity and digital content with each brand's business goals: what looks good should also perform and deliver results.",
     "about.p2": "I work through art direction and branding, backed by consumer research and benchmarking to understand the market before I design. Then I measure: I set creative KPIs and use data analysis to optimize the visual performance of every piece.",
@@ -458,6 +509,31 @@ function render() {
       <span class="svc-num">0${i + 1}</span><h3>${esc(s[lang].t)}</h3>
       <div><p>${esc(s[lang].d)}</p><ul class="tags">${s[lang].tags.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>
     </article>`).join("");
+  // Paquetes: en español el precio principal es COP; en inglés, USD.
+  const es = lang === "es";
+  $("#pkgGrid").innerHTML = PACKAGES.map((p, i) => {
+    const d = p[lang];
+    const main = es ? "$" + p.cop : "$" + p.usd, alt = es ? "USD $" + p.usd : "COP $" + p.cop;
+    const wa = `https://wa.me/573105675081?text=${encodeURIComponent(`${t("pkg.wa")} ${d.name}.`)}`;
+    return `
+    <article class="pkg reveal${p.featured ? " featured" : ""}" style="transition-delay:${i * 90}ms">
+      ${p.featured ? `<span class="sticker s-lime pkg-badge">${esc(d.badge)}</span>` : ""}
+      <p class="pkg-level">0${i + 1}</p>
+      <h4 class="pkg-name">${esc(d.name)}</h4>
+      <p class="pkg-tag hand">${esc(d.tag)}</p>
+      <p class="pkg-for">${esc(d.for)}</p>
+      <div class="pkg-price"><b>${main}</b><span>${t("pkg.cur")}</span></div>
+      <p class="pkg-alt">${alt}</p>
+      <ul class="pkg-meta"><li>⏱ ${esc(d.time)}</li><li>↻ ${p.rev} ${t("pkg.rev")}</li></ul>
+      ${d.base ? `<p class="pkg-base">${esc(d.base)}</p>` : ""}
+      <ul class="pkg-items">${d.items.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+      <a class="btn ${p.featured ? "btn-primary" : "btn-ghost"} magnetic pkg-cta" href="${wa}" target="_blank" rel="noopener">${t("pkg.cta")} ↗</a>
+    </article>`;
+  }).join("");
+  $("#pkgExtras").innerHTML = EXTRAS.map(([e1, e2, cop, usd]) =>
+    `<tr><td>${esc(es ? e1 : e2)}</td><td>${esc(es ? cop : usd)}</td><td>${esc(es ? "USD " + usd : "COP " + cop)}</td></tr>`).join("");
+  $("#pkgCond").innerHTML = CONDITIONS[lang].map(c => `<li>${esc(c)}</li>`).join("");
+
   $("#procSteps").innerHTML = PROCESS[lang].map(([h, p]) => `<li class="reveal"><h4>${esc(h)}</h4><p>${esc(p)}</p></li>`).join("");
   $("#skillChips").innerHTML = SKILLS[lang].map(([g, list]) =>
     `<li class="grp">${esc(g)}</li>` + list.map(s => `<li>${esc(s)}</li>`).join("")).join("");
