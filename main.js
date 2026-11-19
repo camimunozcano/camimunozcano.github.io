@@ -178,48 +178,252 @@ const SERVICES = [
   { es: { t: "Web, email & impresos", d: "Banners, email marketing, piezas editoriales e impresas, ilustración digital y retoque fotográfico.", tags: ["Banners web", "Email marketing", "Editorial", "Ilustración", "Retoque"] },
     en: { t: "Web, email & print", d: "Banners, email marketing, editorial and print pieces, digital illustration and photo retouching.", tags: ["Web banners", "Email marketing", "Editorial", "Illustration", "Retouching"] } }
 ];
-/* ---------- PAQUETES DE BRANDING (precios: COP y USD a TRM 3.350, redondeados) ---------- */
-const PACKAGES = [
-  { id: "esencial", cop: "950.000", usd: "285", rev: 2,
-    es: { name: "Esencial", tag: "Arranca tu marca", for: "Para emprendimientos que necesitan una imagen profesional rápido.", time: "7–10 días hábiles", base: "",
-      items: ["Brief y llamada inicial", "2 propuestas de logo", "Logo principal + versión en una tinta", "Paleta de color (HEX, RGB, CMYK)", "2 tipografías recomendadas", "Tarjeta de presentación", "Mini guía de uso del logo", "Archivos PNG, JPG, PDF y SVG"] },
-    en: { name: "Essential", tag: "Launch your brand", for: "For new businesses that need a professional look, fast.", time: "7–10 business days", base: "",
-      items: ["Brief and kickoff call", "2 logo concepts", "Main logo + one-color version", "Color palette (HEX, RGB, CMYK)", "2 recommended typefaces", "Business card", "Mini logo usage guide", "PNG, JPG, PDF and SVG files"] } },
-  { id: "profesional", cop: "1.900.000", usd: "570", rev: 3,
-    es: { name: "Profesional", tag: "Marca con presencia", for: "Para negocios que ya venden y necesitan verse consistentes en todos sus canales.", time: "2–3 semanas", base: "Todo lo del Esencial, más:",
-      items: ["Moodboard de dirección visual", "3 propuestas de logo", "Sistema de logo: horizontal, vertical, isotipo", "Patrón y elementos gráficos", "Papelería: tarjeta, hoja membrete y firma de correo", "Kit de redes: 3 plantillas + íconos de destacadas", "Guía de marca básica", "Archivos editables (AI)"] },
-    en: { name: "Professional", tag: "A brand with presence", for: "For businesses already selling that need to look consistent everywhere.", time: "2–3 weeks", base: "Everything in Essential, plus:",
-      items: ["Visual direction moodboard", "3 logo concepts", "Logo system: horizontal, vertical, symbol", "Pattern and graphic elements", "Stationery: business card, letterhead and email signature", "Social kit: 3 templates + highlight icons", "Basic brand guide", "Editable source files (AI)"] } },
-  { id: "integral", cop: "3.350.000", usd: "1,000", rev: 4, featured: true,
-    es: { name: "Integral", tag: "Marca completa", for: "Para marcas que quieren una identidad sólida, con estrategia y un manual que cualquiera pueda seguir.", time: "4–5 semanas", base: "Todo lo del Profesional, más:", badge: "★ el más completo",
-      items: ["Estrategia: benchmarking de 3–5 competidores, público, personalidad y tono", "Sistema de logo completo + favicon", "Set de 6 íconos de marca", "Papelería completa: sobre, carpeta y plantilla de cotización", "Kit de redes ampliado: 6 plantillas", "3 mockups de aplicación", "Animación del logo (5 s)", "Manual de marca completo", "30 días de acompañamiento"] },
-    en: { name: "Complete", tag: "The full brand", for: "For brands that want a solid identity, with strategy and guidelines anyone can follow.", time: "4–5 weeks", base: "Everything in Professional, plus:", badge: "★ the full package",
-      items: ["Strategy: benchmark of 3–5 competitors, audience, personality and tone", "Full logo system + favicon", "Set of 6 brand icons", "Full stationery: envelope, folder and quote template", "Extended social kit: 6 templates", "3 application mockups", "Logo animation (5 s)", "Complete brand guidelines", "30 days of post-launch support"] } }
-];
-const EXTRAS = [
-  ["Ronda de revisión adicional", "Extra revision round", "$120.000", "$35"],
-  ["Propuesta de logo adicional", "Extra logo concept", "$250.000", "$75"],
-  ["Animación de logo (Esencial o Profesional)", "Logo animation (Essential or Professional)", "$400.000", "$120"],
-  ["Plantilla de redes adicional", "Extra social template", "$60.000", "$20"],
-  ["Pieza de papelería adicional", "Extra stationery piece", "$90.000", "$25"],
-  ["Diseño de etiqueta o empaque", "Label or packaging design", "$400.000+", "$120+"],
-  ["Pasar de la guía básica al manual completo", "Upgrade basic guide to full guidelines", "$1.100.000", "$330"],
-  ["Entrega urgente (mitad del tiempo)", "Rush delivery (half the time)", "+30%", "+30%"]
-];
-const CONDITIONS = {
-  es: ["50% para iniciar y 50% al aprobar el diseño final, antes de entregar los editables.",
-    "Una ronda de revisión es un grupo de ajustes sobre la propuesta elegida. Cambiar de concepto después de aprobado cuenta como propuesta nueva.",
-    "Las rondas no usadas no se acumulan para otros servicios.",
-    "Los tiempos empiezan con el anticipo y el brief completo; si la respuesta del cliente se demora, la entrega se corre los mismos días.",
-    "Al pagar el 100% el cliente recibe los derechos de uso de su marca. El proyecto puede mostrarse en mi portafolio, salvo acuerdo de confidencialidad.",
-    "No incluye impresión, fuentes con licencia paga, fotografía profesional ni publicación de contenido."],
-  en: ["50% to start and 50% on final design approval, before editable files are delivered.",
-    "A revision round is one set of tweaks to the chosen concept. Changing concept after approval counts as a new concept.",
-    "Unused rounds don't carry over to other services.",
-    "Timelines start with the deposit and a complete brief; if client feedback is delayed, delivery moves by the same number of days.",
-    "On full payment the client receives the usage rights to their brand. The project may be shown in my portfolio unless a confidentiality agreement is in place.",
-    "Not included: printing, paid font licenses, professional photography or content publishing."]
+/* ---------- PAQUETES Y TARIFAS (ventana #paquetes, 3 pestañas) ----------
+   COP con IVA incluido. USD = COP / 3.000 + ~15–20 %, redondeado (incluye todas las cifras).
+   Fuente: los PDFs de Desktop\Claude\paquetes-branding (copias en assets/docs). */
+const COND_PAY = {
+  es: ["Precios en pesos colombianos con IVA incluido. No incluyen retención en la fuente ni otras retenciones de ley, que se aplican por separado cuando corresponda.",
+    "Clientes en el exterior pagan en dólares (USD). Las comisiones de envío y conversión de plataformas como PayPal, Wise, Western Union o transferencias bancarias internacionales las asume el cliente, de modo que el valor recibido sea el total cotizado."],
+  en: ["Prices in Colombian pesos include VAT (IVA). Withholding taxes (retención en la fuente) are not included and are applied separately when required by law.",
+    "International clients pay in US dollars (USD). Transfer and conversion fees from platforms such as PayPal, Wise, Western Union or international bank transfers are covered by the client, so the amount received matches the quoted total."]
 };
+const COND_HOURS = {
+  es: ["Trabajo en días hábiles, de lunes a viernes. Los tiempos de entrega se cuentan en días hábiles.",
+    "Si necesitas algo fuera de este horario, en fin de semana o festivo, coordinémoslo con anticipación para confirmar disponibilidad y acordar las condiciones."],
+  en: ["I work on business days, Monday to Friday. Delivery times are counted in business days.",
+    "If you need something outside these hours, on a weekend or a holiday, let's arrange it in advance to confirm availability and agree on the terms."]
+};
+const PRICING = {
+  branding: {
+    pdf: "assets/docs/Tarifas-branding-Maria-Camila-Munoz.pdf",
+    es: { tab: "Branding", title: "Paquetes de branding", note: "elige el tuyo ✶",
+      lead: "Tres niveles para cada etapa de tu negocio. Todos incluyen rondas de revisión, archivos finales listos para usar y acompañamiento en cada paso. Precios con IVA incluido.",
+      extras: "Extras para cualquier paquete" },
+    en: { tab: "Branding", title: "Branding packages", note: "pick yours ✶",
+      lead: "Three levels for every stage of your business. All include revision rounds, ready-to-use final files and support at every step.",
+      extras: "Add-ons for any package" },
+    plans: [
+      { cop: "950.000", usd: "370",
+        es: { name: "Esencial", tag: "Arranca tu marca", for: "Para emprendimientos que necesitan una imagen profesional rápido.", chips: ["⏱ 7–10 días hábiles", "↻ 2 rondas de revisión"], base: "",
+          items: ["Brief y llamada inicial", "2 propuestas de logo", "Logo principal + versión en una tinta", "Paleta de color (HEX, RGB, CMYK)", "2 tipografías recomendadas", "Tarjeta de presentación (frente y reverso)", "Mini guía de uso del logo", "Archivos PNG, JPG, PDF y SVG"] },
+        en: { name: "Essential", tag: "Launch your brand", for: "For new businesses that need a professional look, fast.", chips: ["⏱ 7–10 business days", "↻ 2 revision rounds"], base: "",
+          items: ["Brief and kickoff call", "2 logo concepts", "Main logo + one-color version", "Color palette (HEX, RGB, CMYK)", "2 recommended typefaces", "Business card (front and back)", "Mini logo usage guide", "PNG, JPG, PDF and SVG files"] } },
+      { cop: "1.900.000", usd: "740",
+        es: { name: "Profesional", tag: "Marca con presencia", for: "Para negocios que ya venden y necesitan verse consistentes en todos sus canales.", chips: ["⏱ 2–3 semanas", "↻ 3 rondas de revisión"], base: "Todo lo del Esencial, más:",
+          items: ["Moodboard de dirección visual", "3 propuestas de logo (en lugar de 2)", "Sistema de logo: horizontal, vertical e isotipo", "Patrón y elementos gráficos de apoyo", "Papelería: tarjeta, hoja membrete y firma de correo", "Kit de redes: 3 plantillas + íconos de destacadas", "Guía de marca básica", "Archivos editables (AI) y carpeta organizada"] },
+        en: { name: "Professional", tag: "A brand with presence", for: "For businesses already selling that need to look consistent everywhere.", chips: ["⏱ 2–3 weeks", "↻ 3 revision rounds"], base: "Everything in Essential, plus:",
+          items: ["Visual direction moodboard", "3 logo concepts (instead of 2)", "Logo system: horizontal, vertical and symbol", "Pattern and supporting graphic elements", "Stationery: business card, letterhead and email signature", "Social kit: 3 templates + highlight icons", "Basic brand guide", "Editable source files (AI), neatly organized"] } },
+      { cop: "3.350.000", usd: "1,300", featured: true,
+        es: { name: "Integral", tag: "Marca completa", for: "Para marcas que quieren una identidad sólida, con estrategia y un manual que cualquiera pueda seguir.", chips: ["⏱ 4–5 semanas", "↻ 4 rondas de revisión"], base: "Todo lo del Profesional, más:", badge: "★ el más completo",
+          items: ["Estrategia: benchmarking de 3–5 competidores, público, personalidad, propuesta de valor y tono", "Sistema de logo completo + favicon", "Set de 6 íconos de marca", "Papelería completa: sobre, carpeta y plantilla de cotización", "Kit de redes ampliado: 6 plantillas y portadas", "3 mockups de aplicación", "Animación del logo (5 s)", "Manual de marca completo", "30 días de acompañamiento"] },
+        en: { name: "Complete", tag: "The full brand", for: "For brands that want a solid identity, with strategy and guidelines anyone can follow.", chips: ["⏱ 4–5 weeks", "↻ 4 revision rounds"], base: "Everything in Professional, plus:", badge: "★ the full package",
+          items: ["Strategy: benchmark of 3–5 competitors, audience, personality, value proposition and tone", "Full logo system + favicon", "Set of 6 brand icons", "Full stationery: envelope, folder and quote template", "Extended social kit: 6 templates and covers", "3 application mockups", "Logo animation (5 s)", "Complete brand guidelines", "30 days of post-launch support"] } }
+    ],
+    extras: [
+      ["Ronda de revisión adicional", "Extra revision round", "$120.000", "$45"],
+      ["Propuesta de logo adicional", "Extra logo concept", "$250.000", "$100"],
+      ["Animación de logo (Esencial o Profesional)", "Logo animation (Essential or Professional)", "$400.000", "$155"],
+      ["Plantilla de redes adicional", "Extra social template", "$60.000", "$25"],
+      ["Pieza de papelería adicional", "Extra stationery piece", "$90.000", "$35"],
+      ["Diseño de etiqueta o empaque", "Label or packaging design", "desde $400.000", "from $155"],
+      ["Pasar de la guía básica al manual completo", "Upgrade basic guide to full guidelines", "$1.100.000", "$430"],
+      ["Entrega urgente (mitad del tiempo, sujeta a disponibilidad)", "Rush delivery (half the time, subject to availability)", "+30%", "+30%"]
+    ],
+    cond: {
+      es: [["Pagos y facturación", ["50% para iniciar y 50% al aprobar el diseño final, antes de entregar los archivos editables.", ...COND_PAY.es]],
+        ["Tiempos y horario", [...COND_HOURS.es, "Los tiempos empiezan con el anticipo y el brief completo. Si las respuestas o aprobaciones se demoran, la entrega se corre los mismos días."]],
+        ["Revisiones", ["Una ronda de revisión es un grupo de ajustes, enviados juntos, sobre la propuesta elegida.", "Cambiar de concepto después de aprobado cuenta como una propuesta nueva.", "Las rondas no usadas no se acumulan ni se trasladan a otros servicios."]],
+        ["Derechos y alcance", ["Al pagar el 100%, recibes los derechos de uso de tu marca. El proyecto puede mostrarse en mi portafolio, salvo acuerdo de confidencialidad.", "No incluye impresión, fuentes o imágenes con licencia paga, fotografía profesional ni publicación de contenido.", "Cada propuesta tiene una vigencia de 30 días desde su envío."]]],
+      en: [["Payments & invoicing", ["50% to start and 50% on final design approval, before editable files are delivered.", ...COND_PAY.en]],
+        ["Timelines & hours", [...COND_HOURS.en, "Timelines start with the deposit and a complete brief. If feedback or approvals are delayed, delivery moves by the same number of days."]],
+        ["Revisions", ["A revision round is one set of tweaks, sent together, on the chosen concept.", "Changing concept after approval counts as a new concept.", "Unused rounds don't carry over or transfer to other services."]],
+        ["Rights & scope", ["On full payment you receive the usage rights to your brand. The project may be shown in my portfolio unless a confidentiality agreement is in place.", "Not included: printing, paid font or image licenses, professional photography or content publishing.", "Each proposal is valid for 30 days from the date it is sent."]]]
+    },
+    custom: {
+      es: { kick: "¿ninguno encaja del todo?", h: "Construyamos una propuesta a la medida de tu marca", p: "Cada negocio está en un momento distinto. Si ninguno de los tres paquetes responde a lo que buscas, cuéntame tus objetivos, el alcance que necesitas y tu presupuesto. Con gusto evaluamos la combinación de entregables, tiempos y condiciones que mejor se ajuste a tu proyecto, y te presento una propuesta personalizada.", wa: "¡Hola María Camila! Quiero una propuesta de branding a la medida." },
+      en: { kick: "none quite fits?", h: "Let's build a proposal tailored to your brand", p: "Every business is at a different stage. If none of the three packages matches what you're looking for, tell me your goals, the scope you need and your budget. I'll gladly review the mix of deliverables, timelines and terms that best fits your project and send you a personalized proposal.", wa: "Hi María Camila! I'd like a tailored branding proposal." }
+    }
+  },
+
+  redes: {
+    pdf: "assets/docs/Tarifas-redes-sociales-Maria-Camila-Munoz.pdf", monthly: true,
+    es: { tab: "Redes sociales", title: "Manejo de redes sociales", note: "precios mensuales ✶",
+      lead: "Contenido constante, con línea gráfica clara y medición de resultados. Precios mensuales con IVA incluido; cada plan detalla exactamente lo que recibes en el mes.",
+      extras: "Extras para cualquier plan",
+      tip: "¿Ya hiciste tu marca conmigo? Tienes 10% de descuento en el primer mes de cualquier plan de redes." },
+    en: { tab: "Social media", title: "Social media management", note: "monthly plans ✶",
+      lead: "Consistent content, a clear visual line and measurable results. Monthly prices; each plan lists exactly what you get every month.",
+      extras: "Add-ons for any plan",
+      tip: "Already built your brand with me? Get 10% off the first month of any social media plan." },
+    plans: [
+      { cop: "900.000", usd: "350",
+        es: { name: "Presencia", tag: "Estar y verse bien", for: "Para negocios que necesitan estar presentes en redes y verse profesionales.", chips: ["📱 1 red (Instagram)", "↻ 1 ronda por parrilla"], base: "Cada mes recibes:",
+          items: ["8 posts (posts y carruseles)", "8 historias", "Parrilla mensual con copys", "Programación de publicaciones", "Línea gráfica coherente con tu marca", "Archivos de cada pieza para tu archivo"] },
+        en: { name: "Presence", tag: "Be there, look good", for: "For businesses that need to be on social media and look professional.", chips: ["📱 1 network (Instagram)", "↻ 1 round per grid"], base: "Every month you get:",
+          items: ["8 posts (single and carousels)", "8 stories", "Monthly content grid with copy", "Post scheduling", "A visual line consistent with your brand", "Files of every piece for your records"] } },
+      { cop: "1.800.000", usd: "700", featured: true,
+        es: { name: "Crecimiento", tag: "Conectar y crecer", for: "Para marcas que quieren crecer, conectar con su comunidad y medir lo que funciona.", chips: ["📱 1 red", "↻ 2 rondas por parrilla"], base: "Cada mes recibes:", badge: "★ el más elegido",
+          items: ["12 posts (incluye 4 carruseles)", "12 historias", "2 reels editados con tu material", "Parrilla mensual con copys y hashtags", "Programación de publicaciones", "Respuesta a comentarios y mensajes en días hábiles", "Reporte mensual con métricas", "Archivos de cada pieza para tu archivo"] },
+        en: { name: "Growth", tag: "Connect and grow", for: "For brands that want to grow, connect with their community and measure what works.", chips: ["📱 1 network", "↻ 2 rounds per grid"], base: "Every month you get:", badge: "★ most popular",
+          items: ["12 posts (including 4 carousels)", "12 stories", "2 reels edited from your footage", "Monthly content grid with copy and hashtags", "Post scheduling", "Replies to comments and messages on business days", "Monthly metrics report", "Files of every piece for your records"] } },
+      { cop: "3.200.000", usd: "1,250",
+        es: { name: "Marca activa", tag: "Destacar con estrategia", for: "Para marcas que quieren resultados medibles y contenido que se diferencie de la competencia.", chips: ["📱 Hasta 3 redes", "↻ 2 rondas + ajustes"], base: "Cada mes recibes:",
+          items: ["16 posts (incluye 6 carruseles)", "20 historias", "4 reels con edición y motion graphics", "Estrategia y calendario de contenido mensual", "Parrilla mensual con copys y hashtags", "Programación de publicaciones", "Gestión completa de comunidad en días hábiles", "Reporte con KPIs y reunión mensual de resultados", "Benchmarking de la competencia cada 3 meses"] },
+        en: { name: "Active brand", tag: "Stand out with strategy", for: "For brands that want measurable results and content that stands apart from the competition.", chips: ["📱 Up to 3 networks", "↻ 2 rounds + tweaks"], base: "Every month you get:",
+          items: ["16 posts (including 6 carousels)", "20 stories", "4 reels with editing and motion graphics", "Monthly content strategy and calendar", "Monthly content grid with copy and hashtags", "Post scheduling", "Full community management on business days", "KPI report and monthly results meeting", "Competitor benchmarking every 3 months"] } }
+    ],
+    extras: [
+      ["Post adicional", "Extra post", "$60.000", "$25"],
+      ["Historia adicional", "Extra story", "$25.000", "$10"],
+      ["Reel adicional (edición + motion, con tu material)", "Extra reel (editing + motion, from your footage)", "$150.000", "$60"],
+      ["Red social adicional (adaptación de la parrilla)", "Extra social network (grid adaptation)", "$350.000 / mes", "$135 / month"],
+      ["Manejo de pauta en Meta Ads (no incluye el presupuesto)", "Meta Ads management (ad budget not included)", "$400.000 / mes", "$155 / month"],
+      ["Sesión de fotos de producto (media jornada)", "Product photo shoot (half day)", "$450.000", "$175"],
+      ["Kit de 6 plantillas editables en Canva", "Kit of 6 editable Canva templates", "$250.000", "$100"],
+      ["Pago trimestral por adelantado", "Quarterly payment in advance", "−10%", "−10%"]
+    ],
+    cond: {
+      es: [["Pagos y facturación", ["Cada mes se paga por adelantado, antes de iniciar la producción.", ...COND_PAY.es]],
+        ["Horario y respuesta", ["Trabajo en días hábiles, de lunes a viernes. La gestión de comunidad y la respuesta a mensajes se hacen en ese horario.", "Si necesitas cubrimiento fuera de este horario, en fin de semana, festivo o durante un evento, coordinémoslo con anticipación para confirmar disponibilidad y acordar las condiciones."]],
+        ["Contenido y aprobaciones", ["La parrilla del mes siguiente se entrega y se aprueba en los primeros 5 días hábiles del mes en curso.", "Las fotos y los videos los entrega el cliente, salvo que contrate la sesión de fotos.", "Las piezas fuera de la parrilla aprobada se cobran como extra.", "Las rondas de revisión no usadas no se acumulan para el mes siguiente."]],
+        ["Contrato y alcance", ["Contrato mínimo recomendado de 3 meses: en redes los resultados se ven con constancia.", "Para terminar el servicio, avísame con 15 días de anticipación al siguiente corte.", "El presupuesto de pauta lo paga el cliente directamente a la plataforma.", "Cada propuesta tiene una vigencia de 30 días desde su envío."]]],
+      en: [["Payments & invoicing", ["Each month is paid in advance, before production starts.", ...COND_PAY.en]],
+        ["Hours & response", ["I work on business days, Monday to Friday. Community management and message replies happen during those hours.", "If you need coverage outside these hours, on a weekend, a holiday or during an event, let's arrange it in advance to confirm availability and agree on the terms."]],
+        ["Content & approvals", ["Next month's grid is delivered and approved within the first 5 business days of the current month.", "Photos and videos are provided by the client, unless the photo shoot is booked.", "Pieces outside the approved grid are billed as add-ons.", "Unused revision rounds don't carry over to the next month."]],
+        ["Contract & scope", ["Recommended minimum of 3 months: on social media, results come with consistency.", "To end the service, let me know 15 days before the next billing date.", "The ad budget is paid by the client directly to the platform.", "Each proposal is valid for 30 days from the date it is sent."]]]
+    },
+    custom: {
+      es: { kick: "¿ningún plan se ajusta a tu marca?", h: "Diseñemos un plan a la medida", p: "Cada marca tiene un ritmo, un público y un presupuesto distintos. Si ninguna de las tres opciones responde a lo que buscas, cuéntame tus objetivos, los canales en los que quieres estar y el alcance que necesitas. Con gusto evaluamos la frecuencia, los formatos y las condiciones que mejor se ajusten a tu negocio, y te presento una propuesta personalizada.", wa: "¡Hola María Camila! Quiero un plan de redes sociales a la medida." },
+      en: { kick: "no plan fits your brand?", h: "Let's design a tailored plan", p: "Every brand has a different pace, audience and budget. If none of the three options matches what you're looking for, tell me your goals, the channels you want to be on and the scope you need. I'll gladly review the frequency, formats and terms that best fit your business and send you a personalized proposal.", wa: "Hi María Camila! I'd like a tailored social media plan." }
+    }
+  },
+
+  piezas: {
+    pdf: "assets/docs/Tarifas-piezas-graficas-Maria-Camila-Munoz.pdf",
+    es: { tab: "Piezas gráficas", title: "Piezas gráficas e impresos", note: "por pieza ✶",
+      lead: "Precios por pieza con IVA incluido. Cada pieza incluye 2 rondas de revisión y archivos finales listos para imprimir (con sangrado) y para usar en digital.",
+      tip: "¿Varias piezas en un mismo pedido? Desde 5 piezas tienes 10% de descuento sobre el total, y todas se diseñan con un mismo concepto gráfico." },
+    en: { tab: "Graphic & print", title: "Graphic & print pieces", note: "priced per piece ✶",
+      lead: "Prices per piece. Each one includes 2 revision rounds and final files ready for print (with bleed) and for digital use.",
+      tip: "Several pieces in one order? From 5 pieces you get 10% off the total, all designed under one graphic concept." },
+    cats: [
+      { es: "Papelería corporativa", en: "Corporate stationery", rows: [
+        ["Tarjeta de presentación (frente y reverso)", "Business card (front and back)", "$90.000", "$35"],
+        ["Hoja membrete", "Letterhead", "$80.000", "$30"],
+        ["Sobre corporativo", "Envelope", "$100.000", "$40"],
+        ["Carpeta corporativa", "Presentation folder", "$280.000", "$110"],
+        ["Firma de correo", "Email signature", "$70.000", "$30"],
+        ["Plantilla de cotización o factura", "Quote or invoice template", "$100.000", "$40"]] },
+      { es: "Publicidad impresa", en: "Print advertising", rows: [
+        ["Flyer o volante · una cara", "Flyer · one side", "$120.000", "$45"],
+        ["Flyer o volante · dos caras", "Flyer · two sides", "$170.000", "$65"],
+        ["Invitación", "Invitation", "$120.000", "$45"],
+        ["Afiche o póster", "Poster", "$150.000", "$60"],
+        ["Pendón o roll-up", "Banner or roll-up", "$180.000", "$70"],
+        ["Valla, aviso o gran formato", "Billboard, sign or large format", "desde $250.000", "from $100"],
+        ["Brochure díptico", "Bi-fold brochure", "$220.000", "$85"],
+        ["Brochure tríptico", "Tri-fold brochure", "$280.000", "$110"],
+        ["Menú de 1 página", "One-page menu", "$150.000", "$60"],
+        ["Menú tipo carta (hasta 4 páginas)", "Menu booklet (up to 4 pages)", "$350.000", "$135"]] },
+      { es: "Editorial y presentaciones", en: "Editorial & presentations", rows: [
+        ["Press kit (hasta 8 páginas)", "Press kit (up to 8 pages)", "$600.000", "$235"],
+        ["Presentación corporativa (hasta 12 diapositivas)", "Company presentation (up to 12 slides)", "$450.000", "$175"],
+        ["Catálogo, revista o cartilla (por página, mín. 8)", "Catalog, magazine or booklet (per page, min. 8)", "$70.000", "$30"],
+        ["Portada de catálogo, libro o informe", "Catalog, book or report cover", "$200.000", "$80"],
+        ["Infografía", "Infographic", "$250.000", "$100"],
+        ["Aviso para revista o prensa (página)", "Magazine or newspaper ad (full page)", "$250.000", "$100"]] },
+      { es: "Empaque y producto", en: "Packaging & product", rows: [
+        ["Etiqueta de producto (por referencia)", "Product label (per SKU)", "$400.000", "$155"],
+        ["Adaptación de etiqueta a otra referencia", "Label adaptation to another SKU", "$120.000", "$45"],
+        ["Empaque o caja", "Packaging or box", "desde $700.000", "from $275"],
+        ["Sticker o sello de marca", "Brand sticker or seal", "$90.000", "$35"],
+        ["Tag o colgante para producto", "Product hang tag", "$90.000", "$35"]] },
+      { es: "Piezas digitales", en: "Digital pieces", rows: [
+        ["Banner web", "Web banner", "$120.000", "$45"],
+        ["Post para redes", "Social media post", "$60.000", "$25"],
+        ["Mailing o pieza de email marketing", "Email marketing piece", "$200.000", "$80"],
+        ["Adaptación de una pieza a otro formato", "Resizing a piece to another format", "$50.000", "$20"]] }
+    ],
+    cond: {
+      es: [["Pagos y facturación", ["Pedidos menores a $600.000: 100% por adelantado. Desde $600.000: 50% para iniciar y 50% al aprobar, antes de entregar los archivos finales.", ...COND_PAY.es]],
+        ["Tiempos y horario", [...COND_HOURS.es, "Los tiempos empiezan con el pago y el material completo (textos, fotos y logos). Piezas sencillas: 2–3 días hábiles; medianas: 4–7 días hábiles; extensas: 2–3 semanas."]],
+        ["Revisiones y material", ["Cada pieza incluye 2 rondas de revisión. Una ronda es un grupo de ajustes enviados juntos.", "Cambiar de concepto después de aprobado cuenta como una pieza nueva.", "Los textos y las fotos los entrega el cliente; la redacción de textos se cotiza aparte.", "Las rondas no usadas no se acumulan."]],
+        ["Entrega y alcance", ["No incluye impresión. Puedo recomendarte imprentas y revisar la prueba de color.", "Las fuentes o imágenes con licencia paga se cotizan aparte.", "Al pagar el 100%, recibes los derechos de uso de las piezas. Pueden mostrarse en mi portafolio, salvo acuerdo de confidencialidad.", "Cada propuesta tiene una vigencia de 30 días desde su envío."]]],
+      en: [["Payments & invoicing", ["Orders under COP 600.000: 100% upfront. From COP 600.000: 50% to start and 50% on approval, before final files are delivered.", ...COND_PAY.en]],
+        ["Timelines & hours", [...COND_HOURS.en, "Timelines start with payment and complete materials (copy, photos and logos). Simple pieces: 2–3 business days; medium: 4–7 business days; long-form: 2–3 weeks."]],
+        ["Revisions & materials", ["Each piece includes 2 revision rounds. A round is one set of tweaks sent together.", "Changing concept after approval counts as a new piece.", "Copy and photos are provided by the client; copywriting is quoted separately.", "Unused rounds don't carry over."]],
+        ["Delivery & scope", ["Printing is not included. I can recommend print shops and check the color proof.", "Paid font or image licenses are quoted separately.", "On full payment you receive the usage rights to the pieces. They may be shown in my portfolio unless a confidentiality agreement is in place.", "Each proposal is valid for 30 days from the date it is sent."]]]
+    },
+    custom: {
+      es: { kick: "¿no encuentras tu pieza en la lista?", h: "Cotizamos tu proyecto a la medida", p: "Esta lista reúne las piezas más solicitadas, pero cada proyecto tiene sus propias necesidades. Si requieres un formato, un volumen o un tipo de pieza diferente, escríbeme con los detalles: uso, medidas, cantidad y fecha de entrega. Con gusto lo analizamos juntos y te presento una propuesta personalizada, con alcance, tiempos y valor ajustados a tu proyecto.", wa: "¡Hola María Camila! Quiero cotizar piezas gráficas." },
+      en: { kick: "can't find your piece on the list?", h: "Let's quote your project to measure", p: "This list covers the most requested pieces, but every project has its own needs. If you need a different format, volume or type of piece, send me the details: use, size, quantity and deadline. I'll gladly review it with you and send a personalized proposal with scope, timeline and price tailored to your project.", wa: "Hi María Camila! I'd like a quote for graphic pieces." }
+    }
+  }
+};
+const PRICING_ORDER = ["branding", "redes", "piezas"];
+let pkgKind = "branding";
+const WA_NUM = "573105675081";
+const waLink = msg => `https://wa.me/${WA_NUM}?text=${encodeURIComponent(msg)}`;
+// En español el precio principal es COP; en inglés, USD.
+function priceAlt(cop, usd) {
+  return lang === "es" ? "USD " + usd.replace("from ", "desde ").replace("/ month", "/ mes")
+                       : "COP " + cop.replace("desde ", "from ").replace("/ mes", "/ month");
+}
+function renderPricing() {
+  const es = lang === "es", P = PRICING[pkgKind], d = P[lang];
+  const sheet = $("#pkgSheet");
+  sheet.dataset.kind = pkgKind;
+  $("#pkgTabs").innerHTML = PRICING_ORDER.map(k =>
+    `<button type="button" role="tab" class="pkg-tab" data-kind="${k}" aria-selected="${k === pkgKind}">${esc(PRICING[k][lang].tab)}</button>`).join("");
+  $("#pkgTitle").innerHTML = `${esc(d.title)} <span class="hand pkg-note">${esc(d.note)}</span>`;
+  $("#pkgLead").textContent = d.lead;
+  const dl = $("#pkgPdf"); dl.href = P.pdf; dl.querySelector("span").textContent = t("pkg.pdf");
+
+  let body = "";
+  if (P.plans) {
+    body = `<div class="pkg-grid">` + P.plans.map((p, i) => {
+      const x = p[lang];
+      const main = "$" + (es ? p.cop : p.usd);
+      const alt = (es ? "USD $" + p.usd : "COP $" + p.cop) + (P.monthly ? " · " + t("pkg.month") : "");
+      return `
+      <article class="pkg reveal in${p.featured ? " featured" : ""}">
+        ${p.featured ? `<span class="sticker s-lime pkg-badge">${esc(x.badge)}</span>` : ""}
+        <p class="pkg-level">0${i + 1}</p>
+        <h4 class="pkg-name">${esc(x.name)}</h4>
+        <p class="pkg-tag hand">${esc(x.tag)}</p>
+        <p class="pkg-for">${esc(x.for)}</p>
+        <div class="pkg-price"><b>${main}</b><span>${es ? "COP" : "USD"}</span></div>
+        <p class="pkg-alt">${esc(alt)}</p>
+        <ul class="pkg-meta">${x.chips.map(c => `<li>${esc(c)}</li>`).join("")}</ul>
+        ${x.base ? `<p class="pkg-base">${esc(x.base)}</p>` : ""}
+        <ul class="pkg-items">${x.items.map(it => `<li>${esc(it)}</li>`).join("")}</ul>
+        <a class="btn ${p.featured ? "btn-primary" : "btn-ghost"} magnetic pkg-cta" href="${waLink(`${t("pkg.wa")} ${x.name} (${d.tab}).`)}" target="_blank" rel="noopener">${t("pkg.cta")} ↗</a>
+      </article>`;
+    }).join("") + `</div>`;
+  } else {
+    body = `<div class="pkg-cats">` + P.cats.map((c, i) => `
+      <section class="pkg-cat reveal in">
+        <h4><b>${"ABCDE"[i]}</b>${esc(c[lang])}</h4>
+        <table class="pkg-extras">${c.rows.map(([n1, n2, cop, usd]) =>
+          `<tr><td>${esc(es ? n1 : n2)}</td><td>${esc(es ? cop : usd)}</td><td>${esc(priceAlt(cop, usd))}</td></tr>`).join("")}</table>
+      </section>`).join("") + `</div>`;
+  }
+  if (d.tip) body += `<p class="pkg-tip"><span aria-hidden="true">✶</span> ${esc(d.tip)}</p>`;
+  const cu = P.custom[lang];
+  body += `
+    <div class="pkg-custom reveal in">
+      <div><p class="hand">${esc(cu.kick)}</p><h4>${esc(cu.h)}</h4><p>${esc(cu.p)}</p></div>
+      <a class="btn btn-primary magnetic" href="${waLink(cu.wa)}" target="_blank" rel="noopener">${t("pkg.talk")} ✶</a>
+    </div>
+    <div class="pkg-more">
+      ${P.extras ? `<details class="pkg-details"><summary>${esc(d.extras)}</summary><table class="pkg-extras">${P.extras.map(([e1, e2, cop, usd]) =>
+        `<tr><td>${esc(es ? e1 : e2)}</td><td>${esc(es ? cop : usd)}</td><td>${esc(priceAlt(cop, usd))}</td></tr>`).join("")}</table></details>` : ""}
+      <details class="pkg-details"${P.extras ? "" : " open"}><summary>${t("pkg.condTitle")}</summary>
+        <div class="pkg-cond">${P.cond[lang].map(([h, list]) => `<div><h5>${esc(h)}</h5><ul>${list.map(c => `<li>${esc(c)}</li>`).join("")}</ul></div>`).join("")}</div>
+      </details>
+    </div>`;
+  $("#pkgBody").innerHTML = body;
+}
 
 const PROCESS = {
   es: [["Descubrir", "Una llamada para entender tu marca, tu público y tus objetivos."], ["Proponer", "Te envío propuesta, tiempos y cotización clara. Sin sorpresas."], ["Crear", "Concepto, diseño y rondas de ajustes contigo en cada etapa."], ["Entregar", "Archivos finales organizados y listos para usar en todo formato."]],
@@ -286,7 +490,7 @@ const I18N = {
     "nav.pkg": "Paquetes", "pkg.title": "Paquetes de branding", "pkg.note": "elige el tuyo ✶",
     "pkg.lead": "Tres niveles para cada etapa de tu negocio. Todos incluyen rondas de revisión, archivos finales listos para usar y acompañamiento en cada paso.",
     "pkg.extrasTitle": "Extras para cualquier paquete", "pkg.condTitle": "Condiciones", "pkg.rev": "rondas de revisión",
-    "pkg.cta": "Quiero este paquete", "pkg.wa": "¡Hola María Camila! Me interesa el paquete de branding", "pkg.cur": "COP", "pkg.alt": "USD",
+    "pkg.cta": "Quiero este plan", "pkg.wa": "¡Hola María Camila! Me interesa", "pkg.pdf": "Descargar PDF", "pkg.month": "por mes", "pkg.talk": "Hablemos",
     "about.eyebrow": "Sobre mí", "about.t1": "Estrategia en la cabeza,", "about.t2": "sensibilidad en las manos.",
     "about.p1": "Soy María Camila, Comunicadora Gráfica Publicitaria con 5 años de experiencia. Conecto la identidad visual y el contenido digital con los objetivos de negocio de cada marca.",
     "about.p2": "Trabajo desde la dirección de arte y el branding, con investigación del consumidor, benchmarking y KPIs creativos para que cada pieza, además de verse bien, dé resultados.",
@@ -297,7 +501,7 @@ const I18N = {
     "hire.eyebrow": "Para equipos y agencias", "hire.title": "Estrategia, diseño y video en una sola persona para tu equipo.",
     "hire.text": "Llego con dirección de arte, branding, contenido para redes y postproducción, y con la costumbre de medir lo que funciona. Disponible para roles de tiempo completo, en Medellín o en remoto.",
     "hire.cv": "Ver mi CV", "hire.contact": "Hablemos de tu equipo",
-    "pkg.hint": "¿lista para empezar? mira los paquetes →", "tabs.hint": "hay más, explora →", "tabs.next": "Siguiente", "pkg.btn": "Ver paquetes de branding",
+    "pkg.hint": "¿lista para empezar? mira las tarifas →", "tabs.hint": "hay más, explora →", "tabs.next": "Siguiente", "pkg.btn": "Ver paquetes y tarifas",
     "ct.eyebrow": "Contacto", "ct.t1": "¿Tienes un proyecto", "ct.t2": "en mente?",
     "ct.lead": "Cuéntame qué necesitas y te envío una cotización personalizada en menos de 48 horas.", "ct.mail": "Escríbeme un correo",
     "ft.rights": "Todos los derechos reservados.", "work.band": ["Conoce mi trabajo", "explora los diseños", "Portafolio", "toca cualquier pieza"],
@@ -323,7 +527,7 @@ const I18N = {
     "nav.pkg": "Packages", "pkg.title": "Branding packages", "pkg.note": "pick yours ✶",
     "pkg.lead": "Three levels for every stage of your business. All include revision rounds, ready-to-use final files and support at every step.",
     "pkg.extrasTitle": "Add-ons for any package", "pkg.condTitle": "Terms", "pkg.rev": "revision rounds",
-    "pkg.cta": "I want this package", "pkg.wa": "Hi María Camila! I'm interested in the branding package", "pkg.cur": "USD", "pkg.alt": "COP",
+    "pkg.cta": "I want this one", "pkg.wa": "Hi María Camila! I am interested in", "pkg.pdf": "Download PDF (Spanish)", "pkg.month": "per month", "pkg.talk": "Let's talk",
     "about.eyebrow": "About me", "about.t1": "Strategy in mind,", "about.t2": "craft in hand.",
     "about.p1": "I'm María Camila, an advertising graphic communicator with 5 years of experience. I connect visual identity and digital content with each brand's business goals.",
     "about.p2": "I work through art direction and branding, backed by consumer research, benchmarking and creative KPIs, so every piece doesn't just look good: it delivers results.",
@@ -334,7 +538,7 @@ const I18N = {
     "hire.eyebrow": "For teams & agencies", "hire.title": "Strategy, design and video, all in one hire for your team.",
     "hire.text": "I bring art direction, branding, social content and post-production, plus the habit of measuring what works. Available for full-time roles, in Medellín or remote.",
     "hire.cv": "See my résumé", "hire.contact": "Let's talk about your team",
-    "pkg.hint": "ready to start? see the packages →", "tabs.hint": "there's more, explore →", "tabs.next": "Next", "pkg.btn": "See branding packages",
+    "pkg.hint": "ready to start? see the rates →", "tabs.hint": "there's more, explore →", "tabs.next": "Next", "pkg.btn": "See packages & rates",
     "ct.eyebrow": "Contact", "ct.t1": "Got a project", "ct.t2": "in mind?",
     "ct.lead": "Tell me what you need and I'll send you a tailored quote within 48 hours.", "ct.mail": "Send me an email",
     "ft.rights": "All rights reserved.", "work.band": ["See my work", "explore the designs", "Portfolio", "tap any piece"],
@@ -563,30 +767,7 @@ function render() {
       <span class="svc-num">0${i + 1}</span><h3>${esc(s[lang].t)}</h3>
       <div><p>${esc(s[lang].d)}</p><ul class="tags">${s[lang].tags.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>
     </article>`).join("");
-  // Paquetes: en español el precio principal es COP; en inglés, USD.
-  const es = lang === "es";
-  $("#pkgGrid").innerHTML = PACKAGES.map((p, i) => {
-    const d = p[lang];
-    const main = es ? "$" + p.cop : "$" + p.usd, alt = es ? "USD $" + p.usd : "COP $" + p.cop;
-    const wa = `https://wa.me/573105675081?text=${encodeURIComponent(`${t("pkg.wa")} ${d.name}.`)}`;
-    return `
-    <article class="pkg reveal${p.featured ? " featured" : ""}" style="transition-delay:${i * 90}ms">
-      ${p.featured ? `<span class="sticker s-lime pkg-badge">${esc(d.badge)}</span>` : ""}
-      <p class="pkg-level">0${i + 1}</p>
-      <h4 class="pkg-name">${esc(d.name)}</h4>
-      <p class="pkg-tag hand">${esc(d.tag)}</p>
-      <p class="pkg-for">${esc(d.for)}</p>
-      <div class="pkg-price"><b>${main}</b><span>${t("pkg.cur")}</span></div>
-      <p class="pkg-alt">${alt}</p>
-      <ul class="pkg-meta"><li>⏱ ${esc(d.time)}</li><li>↻ ${p.rev} ${t("pkg.rev")}</li></ul>
-      ${d.base ? `<p class="pkg-base">${esc(d.base)}</p>` : ""}
-      <ul class="pkg-items">${d.items.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
-      <a class="btn ${p.featured ? "btn-primary" : "btn-ghost"} magnetic pkg-cta" href="${wa}" target="_blank" rel="noopener">${t("pkg.cta")} ↗</a>
-    </article>`;
-  }).join("");
-  $("#pkgExtras").innerHTML = EXTRAS.map(([e1, e2, cop, usd]) =>
-    `<tr><td>${esc(es ? e1 : e2)}</td><td>${esc(es ? cop : usd)}</td><td>${esc(es ? "USD " + usd : "COP " + cop)}</td></tr>`).join("");
-  $("#pkgCond").innerHTML = CONDITIONS[lang].map(c => `<li>${esc(c)}</li>`).join("");
+  renderPricing();
 
   $("#procSteps").innerHTML = PROCESS[lang].map(([h, p]) => `<li class="reveal"><h4>${esc(h)}</h4><p>${esc(p)}</p></li>`).join("");
   $("#skillChips").innerHTML = SKILLS[lang].map(([g, list]) =>
@@ -918,7 +1099,19 @@ function closePkg() {
   if (pkgLastFocus) pkgLastFocus.focus({ preventScroll: true });
 }
 document.addEventListener("click", e => {
-  if (e.target.closest("[data-pkg-open]")) { e.preventDefault(); setMenu(false); openPkg(); }
+  const tab = e.target.closest(".pkg-tab");
+  if (tab) {
+    pkgKind = tab.dataset.kind; renderPricing();
+    pkgOv.scrollTo({ top: 0, behavior: "smooth" });
+    $(`.pkg-tab[data-kind="${pkgKind}"]`).focus({ preventScroll: true });
+    return;
+  }
+  const opener = e.target.closest("[data-pkg-open]");
+  if (opener) {
+    e.preventDefault(); setMenu(false);
+    if (opener.dataset.pkgOpen && PRICING[opener.dataset.pkgOpen]) { pkgKind = opener.dataset.pkgOpen; renderPricing(); }
+    openPkg();
+  }
   else if (e.target.closest("[data-pkg-close]") || e.target === pkgOv) closePkg();
 });
 addEventListener("keydown", e => { if (e.key === "Escape" && !pkgOv.hidden) closePkg(); });

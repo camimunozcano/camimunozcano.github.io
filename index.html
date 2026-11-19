@@ -147,22 +147,14 @@
     <!-- ============ PAQUETES (ventana aparte, se abre con [data-pkg-open] o #paquetes) ============ -->
     <div class="pkg-overlay" id="paquetes" role="dialog" aria-modal="true" aria-labelledby="pkgTitle" hidden>
       <button class="v-btn v-close pkg-close" data-pkg-close aria-label="Cerrar">✕</button>
-      <div class="packages pkg-sheet">
+      <div class="packages pkg-sheet" id="pkgSheet" data-kind="branding">
+        <div class="pkg-tabs" role="tablist" id="pkgTabs"></div>
         <div class="pkg-head">
-          <h3 class="sub-title" id="pkgTitle"><span data-i18n="pkg.title">Paquetes de branding</span> <span class="hand pkg-note" data-i18n="pkg.note">elige el tuyo ✶</span></h3>
-          <p class="section-lead reveal" data-i18n="pkg.lead"></p>
+          <h3 class="sub-title" id="pkgTitle"></h3>
+          <p class="section-lead" id="pkgLead"></p>
+          <a class="pkg-pdf" id="pkgPdf" href="#" target="_blank" rel="noopener" download><span>Descargar PDF</span> ↓</a>
         </div>
-        <div class="pkg-grid" id="pkgGrid"></div>
-        <div class="pkg-more">
-          <details class="pkg-details reveal">
-            <summary data-i18n="pkg.extrasTitle">Extras para cualquier paquete</summary>
-            <table class="pkg-extras" id="pkgExtras"></table>
-          </details>
-          <details class="pkg-details reveal">
-            <summary data-i18n="pkg.condTitle">Condiciones</summary>
-            <ol class="pkg-cond" id="pkgCond"></ol>
-          </details>
-        </div>
+        <div id="pkgBody"></div>
       </div>
     </div>
 
