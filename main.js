@@ -313,35 +313,53 @@ const PRICING = {
         ["Sobre corporativo", "Envelope", "$100.000", "$40"],
         ["Carpeta corporativa", "Presentation folder", "$280.000", "$110"],
         ["Firma de correo", "Email signature", "$70.000", "$30"],
-        ["Plantilla de cotización o factura", "Quote or invoice template", "$100.000", "$40"]] },
+        ["Plantilla de cotización o factura", "Quote or invoice template", "$100.000", "$40"],
+        ["Plantilla de documento (Word o Google Docs)", "Document template (Word or Google Docs)", "$120.000", "$45"],
+        ["Carné o credencial de empleado", "Employee ID badge", "$90.000", "$35"]] },
       { es: "Publicidad impresa", en: "Print advertising", rows: [
         ["Flyer o volante · una cara", "Flyer · one side", "$120.000", "$45"],
         ["Flyer o volante · dos caras", "Flyer · two sides", "$170.000", "$65"],
-        ["Invitación", "Invitation", "$120.000", "$45"],
         ["Afiche o póster", "Poster", "$150.000", "$60"],
         ["Pendón o roll-up", "Banner or roll-up", "$180.000", "$70"],
         ["Valla, aviso o gran formato", "Billboard, sign or large format", "desde $250.000", "from $100"],
         ["Brochure díptico", "Bi-fold brochure", "$220.000", "$85"],
         ["Brochure tríptico", "Tri-fold brochure", "$280.000", "$110"],
-        ["Menú de 1 página", "One-page menu", "$150.000", "$60"],
-        ["Menú tipo carta (hasta 4 páginas)", "Menu booklet (up to 4 pages)", "$350.000", "$135"]] },
+        ["Aviso para revista o prensa (página)", "Magazine or newspaper ad (full page)", "$250.000", "$100"]] },
       { es: "Editorial y presentaciones", en: "Editorial & presentations", rows: [
         ["Press kit (hasta 8 páginas)", "Press kit (up to 8 pages)", "$600.000", "$235"],
+        ["Portafolio de servicios (hasta 8 páginas)", "Services portfolio (up to 8 pages)", "$500.000", "$195"],
         ["Presentación corporativa (hasta 12 diapositivas)", "Company presentation (up to 12 slides)", "$450.000", "$175"],
+        ["Plantilla de presentación editable", "Editable presentation template", "$350.000", "$135"],
         ["Catálogo, revista o cartilla (por página, mín. 8)", "Catalog, magazine or booklet (per page, min. 8)", "$70.000", "$30"],
         ["Portada de catálogo, libro o informe", "Catalog, book or report cover", "$200.000", "$80"],
         ["Infografía", "Infographic", "$250.000", "$100"],
-        ["Aviso para revista o prensa (página)", "Magazine or newspaper ad (full page)", "$250.000", "$100"]] },
+        ["Calendario (12 meses + portada)", "Calendar (12 months + cover)", "$450.000", "$175"]] },
       { es: "Empaque y producto", en: "Packaging & product", rows: [
         ["Etiqueta de producto (por referencia)", "Product label (per SKU)", "$400.000", "$155"],
         ["Adaptación de etiqueta a otra referencia", "Label adaptation to another SKU", "$120.000", "$45"],
         ["Empaque o caja", "Packaging or box", "desde $700.000", "from $275"],
+        ["Bolsa de marca", "Branded shopping bag", "$200.000", "$80"],
         ["Sticker o sello de marca", "Brand sticker or seal", "$90.000", "$35"],
-        ["Tag o colgante para producto", "Product hang tag", "$90.000", "$35"]] },
+        ["Tag o colgante para producto", "Product hang tag", "$90.000", "$35"],
+        ["Tarjeta de agradecimiento para pedidos", "Thank-you card for orders", "$90.000", "$35"],
+        ["Papel de envoltura o patrón para empaque", "Wrapping paper or packaging pattern", "$150.000", "$60"]] },
+      { es: "Eventos y punto de venta", en: "Events & point of sale", rows: [
+        ["Invitación", "Invitation", "$120.000", "$45"],
+        ["Programa o agenda de evento", "Event program or agenda", "$150.000", "$60"],
+        ["Menú de 1 página", "One-page menu", "$150.000", "$60"],
+        ["Menú tipo carta (hasta 4 páginas)", "Menu booklet (up to 4 pages)", "$350.000", "$135"],
+        ["Backing o fondo de prensa", "Step-and-repeat backdrop", "$250.000", "$100"],
+        ["Hablador o display de mesa", "Table tent or counter display", "$90.000", "$35"],
+        ["Señalética (por pieza)", "Signage (per piece)", "$90.000", "$35"],
+        ["Gráfica para stand o mueble de exhibición", "Booth or display graphics", "desde $400.000", "from $155"]] },
       { es: "Piezas digitales", en: "Digital pieces", rows: [
         ["Banner web", "Web banner", "$120.000", "$45"],
         ["Post para redes", "Social media post", "$60.000", "$25"],
+        ["Historia para redes", "Social media story", "$50.000", "$20"],
+        ["Portada para Facebook, YouTube o LinkedIn", "Facebook, YouTube or LinkedIn cover", "$90.000", "$35"],
+        ["Set de piezas para pauta digital (3 tamaños)", "Digital ad set (3 sizes)", "$150.000", "$60"],
         ["Mailing o pieza de email marketing", "Email marketing piece", "$200.000", "$80"],
+        ["Fondo para videollamadas", "Video call background", "$60.000", "$25"],
         ["Adaptación de una pieza a otro formato", "Resizing a piece to another format", "$50.000", "$20"]] }
     ],
     cond: {
@@ -360,15 +378,41 @@ const PRICING = {
     }
   }
 };
+/* ---------- AJUSTE ANUAL POR IPC ----------
+   Los precios de arriba son los de 2026. Cada enero se agrega aquí el IPC del año que terminó
+   (variación anual del DANE, en %). Desde el 1 de enero del año siguiente, la web sube todos los
+   precios (COP y USD) en ese porcentaje y los redondea: COP a 1.000 / 10.000 / 50.000 según el
+   valor, USD a 5 o 10. Ejemplo: { 2026: 5.1 } aplica +5,1% desde el 1 de enero de 2027. */
+const IPC = {};
+const IPC_FACTOR = (() => {
+  const now = new Date(); let f = 1;
+  for (const [y, p] of Object.entries(IPC)) if (now >= new Date(+y + 1, 0, 1)) f *= 1 + p / 100;
+  return f;
+})();
+function bump(str, cur) {
+  if (IPC_FACTOR === 1 || /%/.test(str)) return str;
+  return str.replace(/\d[\d.,]*/, m => {
+    const n = cur === "cop" ? +m.replace(/\./g, "") : +m.replace(/,/g, "");
+    if (!n) return m;
+    const v = n * IPC_FACTOR;
+    const step = cur === "cop" ? (v >= 1e6 ? 50000 : v >= 1e5 ? 10000 : 1000) : (v >= 1000 ? 10 : 5);
+    const r = Math.round(v / step) * step;
+    return cur === "cop" ? r.toLocaleString("de-DE") : r.toLocaleString("en-US");
+  });
+}
+const cop = s => bump(s, "cop"), usd = s => bump(s, "usd");
 const PRICING_ORDER = ["branding", "redes", "piezas"];
 let pkgKind = "branding";
 const WA_NUM = "573105675081";
 const waLink = msg => `https://wa.me/${WA_NUM}?text=${encodeURIComponent(msg)}`;
 // En español el precio principal es COP; en inglés, USD.
-function priceAlt(cop, usd) {
-  return lang === "es" ? "USD " + usd.replace("from ", "desde ").replace("/ month", "/ mes")
-                       : "COP " + cop.replace("desde ", "from ").replace("/ mes", "/ month");
+function priceMain(c, u) { return lang === "es" ? cop(c) : usd(u); }
+function priceAlt(c, u) {
+  return lang === "es" ? "USD " + usd(u).replace("from ", "desde ").replace("/ month", "/ mes")
+                       : "COP " + cop(c).replace("desde ", "from ").replace("/ mes", "/ month");
 }
+const priceRow = ([n1, n2, c, u]) =>
+  `<tr><td>${esc(lang === "es" ? n1 : n2)}</td><td>${esc(priceMain(c, u))}</td><td>${esc(priceAlt(c, u))}</td></tr>`;
 function renderPricing() {
   const es = lang === "es", P = PRICING[pkgKind], d = P[lang];
   const sheet = $("#pkgSheet");
@@ -383,8 +427,8 @@ function renderPricing() {
   if (P.plans) {
     body = `<div class="pkg-grid">` + P.plans.map((p, i) => {
       const x = p[lang];
-      const main = "$" + (es ? p.cop : p.usd);
-      const alt = (es ? "USD $" + p.usd : "COP $" + p.cop) + (P.monthly ? " · " + t("pkg.month") : "");
+      const main = "$" + (es ? cop(p.cop) : usd(p.usd));
+      const alt = (es ? "USD $" + usd(p.usd) : "COP $" + cop(p.cop)) + (P.monthly ? " · " + t("pkg.month") : "");
       return `
       <article class="pkg reveal in${p.featured ? " featured" : ""}">
         ${p.featured ? `<span class="sticker s-lime pkg-badge">${esc(x.badge)}</span>` : ""}
@@ -403,9 +447,8 @@ function renderPricing() {
   } else {
     body = `<div class="pkg-cats">` + P.cats.map((c, i) => `
       <section class="pkg-cat reveal in">
-        <h4><b>${"ABCDE"[i]}</b>${esc(c[lang])}</h4>
-        <table class="pkg-extras">${c.rows.map(([n1, n2, cop, usd]) =>
-          `<tr><td>${esc(es ? n1 : n2)}</td><td>${esc(es ? cop : usd)}</td><td>${esc(priceAlt(cop, usd))}</td></tr>`).join("")}</table>
+        <h4><b>${"ABCDEF"[i]}</b>${esc(c[lang])}</h4>
+        <table class="pkg-extras">${c.rows.map(priceRow).join("")}</table>
       </section>`).join("") + `</div>`;
   }
   if (d.tip) body += `<p class="pkg-tip"><span aria-hidden="true">✶</span> ${esc(d.tip)}</p>`;
@@ -415,13 +458,13 @@ function renderPricing() {
       <div><p class="hand">${esc(cu.kick)}</p><h4>${esc(cu.h)}</h4><p>${esc(cu.p)}</p></div>
       <a class="btn btn-primary magnetic" href="${waLink(cu.wa)}" target="_blank" rel="noopener">${t("pkg.talk")} ✶</a>
     </div>
-    <div class="pkg-more">
-      ${P.extras ? `<details class="pkg-details"><summary>${esc(d.extras)}</summary><table class="pkg-extras">${P.extras.map(([e1, e2, cop, usd]) =>
-        `<tr><td>${esc(es ? e1 : e2)}</td><td>${esc(es ? cop : usd)}</td><td>${esc(priceAlt(cop, usd))}</td></tr>`).join("")}</table></details>` : ""}
-      <details class="pkg-details"${P.extras ? "" : " open"}><summary>${t("pkg.condTitle")}</summary>
-        <div class="pkg-cond">${P.cond[lang].map(([h, list]) => `<div><h5>${esc(h)}</h5><ul>${list.map(c => `<li>${esc(c)}</li>`).join("")}</ul></div>`).join("")}</div>
-      </details>
-    </div>`;
+    ${P.extras ? `<details class="pkg-details pkg-extras-box"><summary>${esc(d.extras)}</summary>
+      <table class="pkg-extras">${P.extras.map(priceRow).join("")}</table></details>` : ""}
+    <section class="pkg-terms">
+      <h4>${t("pkg.condTitle")}</h4>
+      <div class="pkg-cond">${P.cond[lang].map(([h, list], i) =>
+        `<div><h5><i>${i + 1}</i>${esc(h)}</h5><ul>${list.map(c => `<li>${esc(c)}</li>`).join("")}</ul></div>`).join("")}</div>
+    </section>`;
   $("#pkgBody").innerHTML = body;
 }
 

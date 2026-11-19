@@ -463,10 +463,18 @@ html, body { overflow-x: clip; }
 .pkg-extras td { padding: 9px 0; border-top: 1px solid var(--line); vertical-align: top; }
 .pkg-extras td:nth-child(2) { text-align: right; font-weight: 700; color: var(--lime); white-space: nowrap; padding-left: 12px; }
 .pkg-extras td:nth-child(3) { text-align: right; color: var(--muted); white-space: nowrap; padding-left: 12px; font-size: .78rem; }
-.pkg-cond { margin: 0 0 20px; display: grid; gap: 18px; font-size: .86rem; color: #d6cac5; line-height: 1.5; }
-.pkg-cond h5 { margin: 0 0 6px; font-family: var(--f-display); font-size: .95rem; color: var(--lime); }
-.pkg-cond ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.pkg-extras-box { margin-top: 18px; }
+/* Condiciones: 4 bloques en horizontal */
+.pkg-terms { margin-top: 34px; }
+.pkg-terms > h4 { margin: 0 0 14px; font-family: var(--f-display); font-size: clamp(1.3rem, 2.4vw, 1.7rem); letter-spacing: -.02em; }
+.pkg-cond { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; font-size: .84rem; color: #d6cac5; line-height: 1.5; }
+.pkg-cond > div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 18px; }
+.pkg-cond h5 { margin: 0 0 10px; font-family: var(--f-display); font-size: .98rem; color: var(--lime); display: flex; align-items: center; gap: 8px; }
+.pkg-cond h5 i { font-style: normal; flex: none; width: 1.6em; height: 1.6em; border-radius: 50%; display: grid; place-items: center; background: var(--rasp); color: #fff; font-size: .75em; }
+.pkg-cond ul { margin: 0; padding-left: 16px; display: grid; gap: 7px; }
 .pkg-cond li::marker { color: var(--rasp); }
+@media (max-width: 1100px) { .pkg-cond { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .pkg-cond { grid-template-columns: 1fr; } }
 
 /* Pestañas: cada tarifa con su paleta (igual que en los PDFs) */
 .pkg-sheet[data-kind="redes"]  { --rasp: #8b5cff; --pink: #d2c2ff; --lime: #3dffc5; }
@@ -490,7 +498,7 @@ html, body { overflow-x: clip; }
 .pkg-head .section-lead { margin: 12px 0 0; }
 .pkg-pdf { display: inline-flex; gap: .4em; margin-top: 16px; font-size: .88rem; font-weight: 700; color: var(--lime); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
 .pkg-pdf:hover { color: var(--text); }
-.pkg-cats { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.pkg-cats { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: stretch; }
 .pkg-cat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 22px 6px; }
 .pkg-cat h4 { margin: 0 0 10px; font-family: var(--f-display); font-size: 1.15rem; display: flex; align-items: baseline; gap: 10px; }
 .pkg-cat h4 b { font-size: 1.4rem; color: transparent; -webkit-text-stroke: 1.2px var(--rasp); }
